@@ -11,7 +11,7 @@ typedef union{
 class StoreReceivedData{
 
 public:
-	
+
 	receivedData minValue;
 	receivedData maxValue;
 	receivedData servo1Value;

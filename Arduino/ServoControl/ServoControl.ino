@@ -1,7 +1,8 @@
+#include <Servo.h>
 #include "convertReceivedData.h"
 #include "storeReceivedData.h"
 #include "readData.h"
-#include <Servo.h>
+
 
 //Servos pins definitions
 enum{
@@ -51,7 +52,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-    if(Serial.available()>=8) {
+    if(Serial.available()>=32) {
 
      readIncomingData(dataStorage);
      
@@ -61,5 +62,11 @@ void loop() {
       //Serial.write(foo.asBytes[3]);
       Serial.println(dataStorage.minValue.asInt);
       Serial.println(dataStorage.maxValue.asInt);
+      Serial.println(dataStorage.servo1Value.asInt);
+      Serial.println(dataStorage.servo2Value.asInt);
+      Serial.println(dataStorage.servo3Value.asInt);
+      Serial.println(dataStorage.servo4Value.asInt);
+      Serial.println(dataStorage.servo5Value.asInt);
+      Serial.println(dataStorage.servo6Value.asInt);
     }
 }
