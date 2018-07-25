@@ -14,6 +14,7 @@ public:
 
 	receivedData minValue;
 	receivedData maxValue;
+  receivedData speedValue;
 	receivedData servo1Value;
 	receivedData servo2Value;
 	receivedData servo3Value;
