@@ -1,9 +1,8 @@
 #include "readData.h"
 
 // Packet structure:
-// minVaue maxValue speedValue servo1Value servo2Value servo3Value servo4Value servo5Value servo6Value
-//  byte0   byte1      byte2      byte3       byte4       byte5       byte6       byte7       byte8
-
+// minVaue maxValue speedValue servo1Value servo2Value servo3Value servo4Value servo5Value servo6Value firstServo secondServo thirdServo fourthServo fifthServo sixthServo     
+// 4 bytes 4 bytes    4bytes     4 bytes     4 bytes     4bytes      4 bytes     4 bytes     4 bytes     1 byte     1 byte      1 byte      1 byte     1 byte     1 byte
 void readIncomingData(StoreReceivedData &dataStorage)
 {
 
@@ -51,4 +50,10 @@ void readIncomingData(StoreReceivedData &dataStorage)
   for (int i = 0; i < 4; i++) {
     dataStorage.servo6Value.asBytes[i] = Serial.read(); 
   }
+  
+  // Read the order of the servos setting from received packet (6 bytes)
+  for (int i = 0; i < 6; i++) {
+    dataStorage.orderOfServosSetting[i] = Serial.read(); 
+  }
+
 }

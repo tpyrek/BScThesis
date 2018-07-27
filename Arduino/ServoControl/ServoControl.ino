@@ -2,11 +2,12 @@
 #include "convertReceivedData.h"
 #include "storeReceivedData.h"
 #include "readData.h"
+#include "servoSetup.h"
 
 
 //Servos pins definitions
 enum{
-   SERVO1_PIN = 1,
+   SERVO1_PIN = 4,
    SERVO2_PIN,
    SERVO3_PIN,
    SERVO4_PIN,
@@ -26,10 +27,13 @@ Servo servoObjectsTable[6];
 // Object type StoreReceivedData which stores incoming data
 StoreReceivedData dataStorage;
 
-union {
-    byte asBytes[4];
-    int asInt;
-} foo;
+// Object type ConvertReceivedData which calculates and stores scale 
+// used to converting incoming servo values into degrees 
+ConvertReceivedData dataConverter;
+
+// Object type ServoControl which sets servos in proper position in proper time interval
+// (dependent on received speedValue param)
+ServoSetup servosSetter(servoObjectsTable, &dataStorage);
 
 void setup() {
   
@@ -47,26 +51,39 @@ void setup() {
   servoObjectsTable[4].attach(SERVO5_PIN);
   servoObjectsTable[5].attach(SERVO6_PIN);
 
+  // Init servos at the beggining - set all servos on 50 degrees
+  servosSetter.initServos();
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
-    if(Serial.available()>=32) {
+    if(Serial.available()>=42) {
 
      readIncomingData(dataStorage);
-     
-      //Serial.write(foo.asBytes[0]);
-      //Serial.write(foo.asBytes[1]);
-      //Serial.write(foo.asBytes[2]);
-      //Serial.write(foo.asBytes[3]);
-      Serial.println(dataStorage.minValue.asInt);
-      Serial.println(dataStorage.maxValue.asInt);
-      Serial.println(dataStorage.servo1Value.asInt);
-      Serial.println(dataStorage.servo2Value.asInt);
-      Serial.println(dataStorage.servo3Value.asInt);
-      Serial.println(dataStorage.servo4Value.asInt);
-      Serial.println(dataStorage.servo5Value.asInt);
-      Serial.println(dataStorage.servo6Value.asInt);
+     dataConverter.setValues(dataStorage.minValue.asInt, dataStorage.maxValue.asInt);
+     dataConverter.calculateScale(MIN_SERVO_POSITION, MAX_SERVO_POSITION);
+     dataConverter.calculateServosValues(dataStorage);
+
+
+     Serial.println(dataStorage.minValue.asInt);
+     Serial.println(dataStorage.maxValue.asInt);
+     Serial.println(dataStorage.speedValue.asInt);
+     Serial.println(dataStorage.servo1Value.asInt);
+     Serial.println(dataStorage.servo2Value.asInt);
+     Serial.println(dataStorage.servo3Value.asInt);
+     Serial.println(dataStorage.servo4Value.asInt);
+     Serial.println(dataStorage.servo5Value.asInt);
+     Serial.println(dataStorage.servo6Value.asInt);
+     Serial.write(dataStorage.orderOfServosSetting[0]);
+     Serial.write(dataStorage.orderOfServosSetting[1]);
+     Serial.write(dataStorage.orderOfServosSetting[2]);
+     Serial.write(dataStorage.orderOfServosSetting[3]);
+     Serial.write(dataStorage.orderOfServosSetting[4]);
+     Serial.write(dataStorage.orderOfServosSetting[5]);
+
+
+     servosSetter.setServos(33);
     }
 }
