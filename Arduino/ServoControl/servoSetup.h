@@ -5,32 +5,22 @@
 #include <Servo.h>
 #include "storeReceivedData.h"
 
-// Stores last servos positions in degrees
-typedef struct{
-  uint8_t servo1LastPosition;
-  uint8_t servo2LastPosition;
-  uint8_t servo3LastPosition;
-  uint8_t servo4LastPosition;
-  uint8_t servo5LastPosition;
-  uint8_t servo6LastPosition;
-}servosPositions;
-
+// Stores servos last position, new position got from StoreReceivedData object
 typedef struct{
   uint8_t servoLastPosition;
   uint8_t servoNewPosition;
-  uint8_t servoID;
-}temporaryServosData;
+}servosData;
 
 
 class ServoSetup
 {
 private:
 
-  servosPositions lastPositions{50,50,50,50,50,50};
   StoreReceivedData *dataStorage;
   Servo *servoObjectsTable;
+  servosData servosDataTable[6];
 
-  void shiftServo(temporaryServosData &temp);
+  void shiftServo(uint8_t servoID);
   
 public:
 

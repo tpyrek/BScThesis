@@ -85,5 +85,8 @@ void loop() {
 
 
      servosSetter.setServos(33);
+
+     Serial.println("Ready");
+     
     }
 }
