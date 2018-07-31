@@ -23,7 +23,7 @@ void ServoSetup::initServos()
   servoObjectsTable[5].write(50);
 }
 
-void ServoSetup::setServos(int speedValue)
+void ServoSetup::setServos()
 {
   // Get new servos positions
   servosDataTable[0].servoNewPosition = (uint8_t)dataStorage->servo1Value.asInt;
@@ -55,12 +55,15 @@ void ServoSetup::setServos(int speedValue)
 // servoID - servo index in the servoObjectsTable (1 less than servo numeration because of table indexes starting from 0)
 void ServoSetup::shiftServo(uint8_t servoID)
 {
+  // In incoming packet speedValue determines the delay od shifting the servo by one degree in ms
+  int speedValue = dataStorage->speedValue.asInt;
+  
   if(servosDataTable[servoID].servoLastPosition > servosDataTable[servoID].servoNewPosition)
   {
     for(uint8_t i = servosDataTable[servoID].servoLastPosition; i >= servosDataTable[servoID].servoNewPosition; i--)
     {
       servoObjectsTable[servoID].write(i);
-      delayMicroseconds(5000);
+      delayMicroseconds(speedValue*1000); //convert to us
     }     
   }
   else if(servosDataTable[servoID].servoLastPosition < servosDataTable[servoID].servoNewPosition)
@@ -68,7 +71,7 @@ void ServoSetup::shiftServo(uint8_t servoID)
     for(uint8_t i = servosDataTable[servoID].servoLastPosition; i <= servosDataTable[servoID].servoNewPosition; i++)
      {
       servoObjectsTable[servoID].write(i);
-      delayMicroseconds(5000);
+      delayMicroseconds(speedValue*1000); //convert to us
     }     
   }
   
