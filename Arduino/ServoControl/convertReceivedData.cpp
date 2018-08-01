@@ -15,16 +15,6 @@ void ConvertReceivedData::setValues(int _min, int _max)
 
 void ConvertReceivedData::calculateScale(int minServoPosition, int maxServoPosition)
 {
-  /*
-  if(minValue<0)
-  {
-    //if received minValue is negative(range e.g. -1000:1000) convert range to natural numbers(e.g. 0:2000)
-    
-    maxValue += abs(minValue);
-    minValue = abs(minValue);
-    
-  }
-  */
   
 	int servoRange = maxServoPosition - minServoPosition;
   int valueRange = maxValue - minValue;

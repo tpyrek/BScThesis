@@ -55,7 +55,7 @@ void ServoSetup::setServos()
 // servoID - servo index in the servoObjectsTable (1 less than servo numeration because of table indexes starting from 0)
 void ServoSetup::shiftServo(uint8_t servoID)
 {
-  // In incoming packet speedValue determines the delay od shifting the servo by one degree in ms
+  // In incoming packet speedValue determines the delay of shifting the servo by one degree in ms
   int speedValue = dataStorage->speedValue.asInt;
   
   if(servosDataTable[servoID].servoLastPosition > servosDataTable[servoID].servoNewPosition)

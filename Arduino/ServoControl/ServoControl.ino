@@ -59,34 +59,25 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-    if(Serial.available()>=42) {
+    // Packet with all data is 42 bytes length
+    if(Serial.available() >= 42) {     
 
-     readIncomingData(dataStorage);
-     dataConverter.setValues(dataStorage.minValue.asInt, dataStorage.maxValue.asInt);
-     dataConverter.calculateScale(MIN_SERVO_POSITION, MAX_SERVO_POSITION);
-     dataConverter.calculateServosValues(dataStorage);
+      readIncomingData(dataStorage);
 
+      // If data incorrect do nothing
+      if(!dataStorage.dataCorrect())
+      {
+        Serial.println("Incorrect Data");
+        return;
+      }
+     
+      dataConverter.setValues(dataStorage.minValue.asInt, dataStorage.maxValue.asInt);
+      dataConverter.calculateScale(MIN_SERVO_POSITION, MAX_SERVO_POSITION);
+      dataConverter.calculateServosValues(dataStorage);
 
-     Serial.println(dataStorage.minValue.asInt);
-     Serial.println(dataStorage.maxValue.asInt);
-     Serial.println(dataStorage.speedValue.asInt);
-     Serial.println(dataStorage.servo1Value.asInt);
-     Serial.println(dataStorage.servo2Value.asInt);
-     Serial.println(dataStorage.servo3Value.asInt);
-     Serial.println(dataStorage.servo4Value.asInt);
-     Serial.println(dataStorage.servo5Value.asInt);
-     Serial.println(dataStorage.servo6Value.asInt);
-     Serial.write(dataStorage.orderOfServosSetting[0]);
-     Serial.write(dataStorage.orderOfServosSetting[1]);
-     Serial.write(dataStorage.orderOfServosSetting[2]);
-     Serial.write(dataStorage.orderOfServosSetting[3]);
-     Serial.write(dataStorage.orderOfServosSetting[4]);
-     Serial.write(dataStorage.orderOfServosSetting[5]);
+      servosSetter.setServos();
 
-
-     servosSetter.setServos(33);
-
-     Serial.println("Ready");
+      Serial.println("Ready");
      
     }
 }

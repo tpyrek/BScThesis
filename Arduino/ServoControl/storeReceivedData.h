@@ -23,6 +23,8 @@ public:
 	receivedData servo6Value;
   uint8_t orderOfServosSetting[6];
 
+  bool dataCorrect();
+
 };
 
 #endif //STORE_RECEIVED_DATA_H

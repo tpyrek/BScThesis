@@ -25,7 +25,7 @@ private:
 public:
 
   ServoSetup(Servo servoObj[], StoreReceivedData *storageObj);
-  void setServos(int speedValue);
+  void setServos();
   void initServos();
   
 };
