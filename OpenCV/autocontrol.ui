@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1276</width>
+    <height>656</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Kontrola automatyczna</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0" rowspan="3">
+      <widget class="QWidget" name="openCVWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>648</width>
+         <height>480</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>648</width>
+         <height>480</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" rowspan="2">
+      <widget class="QGroupBox" name="permittedOperationsGroupBox">
+       <property name="title">
+        <string>Lista możliwych operacji</string>
+       </property>
+       <widget class="QListView" name="permittedOperationsListView">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>31</y>
+          <width>281</width>
+          <height>411</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="3">
+      <widget class="QListView" name="commandslistView">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>150</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>150</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="2">
+      <widget class="QPushButton" name="executeCommandPushButton">
+       <property name="text">
+        <string>Wykonaj</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" rowspan="2">
+      <widget class="QGroupBox" name="foundFiguresGroupBox">
+       <property name="title">
+        <string>Lista  znalezionych figur</string>
+       </property>
+       <widget class="QListView" name="foundFiguresListView">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>31</y>
+          <width>291</width>
+          <height>411</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item row="3" column="0" colspan="3">
+      <widget class="QPushButton" name="returnPushButton">
+       <property name="text">
+        <string>Powrót</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
