@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>990</width>
+    <width>868</width>
     <height>656</height>
    </rect>
   </property>
@@ -19,54 +19,42 @@
      <property name="verticalSpacing">
       <number>6</number>
      </property>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="setGreenPushButton">
-       <property name="text">
-        <string>Zielony</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="instructionPushButton">
-       <property name="text">
-        <string>Instrukcja</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="setBluePushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>Niebieski</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <widget class="QPushButton" name="setRedPushButton">
+     <item row="0" column="1">
+      <widget class="QPushButton" name="instructionPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
-        <string>Czerwony</string>
+        <string>Instrukcja</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="setYellowPushButton">
-       <property name="text">
-        <string>Żółty</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0" colspan="2">
-      <widget class="QListView" name="commandsListView">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>150</height>
+         <height>30</height>
         </size>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>150</height>
-        </size>
+       <property name="text">
+        <string>Żółty</string>
        </property>
       </widget>
      </item>
@@ -75,7 +63,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>40</height>
+         <height>50</height>
         </size>
        </property>
        <property name="text">
@@ -99,7 +87,43 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="setRedPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Czerwony</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="setGreenPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Zielony</string>
+       </property>
+      </widget>
+     </item>
     </layout>
+   </item>
+   <item row="1" column="1">
+    <widget class="QListWidget" name="commandsListWidget">
+     <property name="minimumSize">
+      <size>
+       <width>850</width>
+       <height>150</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
