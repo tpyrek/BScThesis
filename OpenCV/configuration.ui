@@ -32,6 +32,19 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="setGreenPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Zielony</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="instructionPushButton">
        <property name="minimumSize">
@@ -42,48 +55,6 @@
        </property>
        <property name="text">
         <string>Instrukcja</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="setYellowPushButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Żółty</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QPushButton" name="okPushButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Ok</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0" rowspan="6">
-      <widget class="QWidget" name="openCVwidget" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>648</width>
-         <height>480</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>648</width>
-         <height>480</height>
-        </size>
        </property>
       </widget>
      </item>
@@ -100,8 +71,21 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="setGreenPushButton">
+     <item row="5" column="1">
+      <widget class="QPushButton" name="okPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ok</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="setYellowPushButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -109,7 +93,20 @@
         </size>
        </property>
        <property name="text">
-        <string>Zielony</string>
+        <string>Żółty</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" rowspan="6">
+      <widget class="QLabel" name="label">
+       <property name="minimumSize">
+        <size>
+         <width>640</width>
+         <height>480</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
