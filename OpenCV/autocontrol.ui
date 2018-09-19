@@ -16,7 +16,7 @@
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="1" colspan="2">
+     <item row="3" column="1" colspan="2">
       <widget class="QPushButton" name="executeCommandPushButton">
        <property name="minimumSize">
         <size>
@@ -33,29 +33,6 @@
        <property name="text">
         <string>Wykonaj</string>
        </property>
-      </widget>
-     </item>
-     <item row="0" column="2" rowspan="2">
-      <widget class="QGroupBox" name="permittedOperationsGroupBox">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="title">
-        <string>Lista możliwych operacji</string>
-       </property>
-       <widget class="QListWidget" name="permittedOperationsListWidget">
-        <property name="geometry">
-         <rect>
-          <x>5</x>
-          <y>31</y>
-          <width>291</width>
-          <height>411</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
      </item>
      <item row="0" column="1" rowspan="2">
@@ -75,7 +52,7 @@
           <x>5</x>
           <y>31</y>
           <width>291</width>
-          <height>411</height>
+          <height>371</height>
          </rect>
         </property>
         <property name="minimumSize">
@@ -87,7 +64,7 @@
        </widget>
       </widget>
      </item>
-     <item row="3" column="0" colspan="3">
+     <item row="4" column="0" colspan="3">
       <widget class="QPushButton" name="returnPushButton">
        <property name="minimumSize">
         <size>
@@ -106,7 +83,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0" rowspan="3">
+     <item row="0" column="0" rowspan="4">
       <widget class="QLabel" name="openCVLabel">
        <property name="minimumSize">
         <size>
@@ -117,6 +94,36 @@
        <property name="text">
         <string/>
        </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="highlightFiguresCheckBox">
+       <property name="text">
+        <string>Zanznacz figure na obrazie</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" rowspan="3">
+      <widget class="QGroupBox" name="permittedOperationsGroupBox">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Lista możliwych operacji</string>
+       </property>
+       <widget class="QListWidget" name="permittedOperationsListWidget">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>31</y>
+          <width>291</width>
+          <height>401</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>

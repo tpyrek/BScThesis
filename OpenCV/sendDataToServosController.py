@@ -1,35 +1,36 @@
-from time import sleep
-import serial
+from PyQt5 import QtCore
 import struct
-import random
+
+class sendDataToServosController(QtCore.QObject):
+
+    # Signals
+    sendStatus = QtCore.pyqtSignal()
+    sendText = QtCore.pyqtSignal(str)
+
+    def sendData(self, serial, min, max, speed, servo1Value, servo2Value, servo3Value, servo4Value,
+                                   servo5Value, servo6Value, firstServo, secondServo, thirdServo, fourthServo, fifthServo,
+                                   sixthServo):
+
+        messageToSend = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, servo1Value, servo2Value, servo3Value,
+                                    servo4Value, servo5Value, servo6Value, firstServo, secondServo, thirdServo,
+                                    fourthServo, fifthServo, sixthServo)
+
+        if not serial.is_open:
+            self.sendText.emit("Seiral port jest zamknięty")
+            self.sendStatus.emit()
+            return
+
+        serial.write(messageToSend)
+        self.sendText.emit("Rpi   : " + str(messageToSend))
 
 
-ser = serial.Serial()#('/dev/ttyUSB0', 9600)
-ser.port = '/dev/ttyUSB0'
-ser.baudrate = 9600
-ser.setDTR(True)
-ser.setRTS(True)
-ser.open()
-print(ser.readline())
+        receivedMessage = serial.readline()
+        self.sendText.emit("Robot : " + str(receivedMessage))
 
-while True:
+        self.sendStatus.emit()
 
 
 
-    s1 = random.randint(200, 800)
-    s2 = random.randint(200, 800)
-    s3 = random.randint(200, 800)
-    s4 = random.randint(200, 800)
-    s5 = random.randint(200, 800)
-    s6 = random.randint(200, 800)
-
-    a = struct.pack('<iiiiiiiiiBBBBBB', 0, 1000, 30, s1, s2, s3, s4, s5, s6,1,2,3,4,5,6)
-
-    ser.write(a)
-
-    print("Read data:")
-    ready = ser.readline()
-    print(ready)
 
 
 
