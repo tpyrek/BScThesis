@@ -41,7 +41,6 @@ void setup() {
 
   // Serial baudrate = 9600
   Serial.begin(9600);
-  Serial.println("Ready");
 
   // Attach servo on pin SERVOx_PIN to the servo object
   servoObjectsTable[0].attach(SERVO1_PIN);
