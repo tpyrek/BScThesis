@@ -12,6 +12,7 @@ class openCVWorker(QtCore.QObject):
 
     # Sygnał emitowany w celu dodania figury do listy znalezionych figur w autocontrol
     sendFigureText = QtCore.pyqtSignal(str)
+    sendFigureData = QtCore.pyqtSignal(str)
 
 
     def __init__(self, parent=None):
@@ -101,3 +102,10 @@ class openCVWorker(QtCore.QObject):
 
     def receiveSelectedFigureNumber(self, rowNumber):
         self.selectedFigureNumber = rowNumber
+        self.sendFigureData.emit("Numer : " + str(self.figuresStore.figures[self.selectedFigureNumber].figureNumber)
+                                 + "\nKolor : "
+                                 + str(self.figuresStore.figures[self.selectedFigureNumber].color)
+                                 + "\nŚrodek : "
+                                 + str(self.figuresStore.figures[self.selectedFigureNumber].coordinates)
+                                 + "\nKąt : "
+                                 + str(self.figuresStore.figures[self.selectedFigureNumber].angle))

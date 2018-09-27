@@ -21,14 +21,6 @@ class Ui_Dialog(object):
         self.executeCommandPushButton.setMaximumSize(QtCore.QSize(16777215, 30))
         self.executeCommandPushButton.setObjectName("executeCommandPushButton")
         self.gridLayout.addWidget(self.executeCommandPushButton, 3, 1, 1, 2)
-        self.foundFiguresGroupBox = QtWidgets.QGroupBox(Dialog)
-        self.foundFiguresGroupBox.setMinimumSize(QtCore.QSize(300, 0))
-        self.foundFiguresGroupBox.setObjectName("foundFiguresGroupBox")
-        self.foundFiguresListWidget = QtWidgets.QListWidget(self.foundFiguresGroupBox)
-        self.foundFiguresListWidget.setGeometry(QtCore.QRect(5, 31, 291, 371))
-        self.foundFiguresListWidget.setMinimumSize(QtCore.QSize(0, 0))
-        self.foundFiguresListWidget.setObjectName("foundFiguresListWidget")
-        self.gridLayout.addWidget(self.foundFiguresGroupBox, 0, 1, 2, 1)
         self.returnPushButton = QtWidgets.QPushButton(Dialog)
         self.returnPushButton.setMinimumSize(QtCore.QSize(0, 30))
         self.returnPushButton.setMaximumSize(QtCore.QSize(16777215, 30))
@@ -49,6 +41,20 @@ class Ui_Dialog(object):
         self.permittedOperationsListWidget.setGeometry(QtCore.QRect(5, 31, 291, 401))
         self.permittedOperationsListWidget.setObjectName("permittedOperationsListWidget")
         self.gridLayout.addWidget(self.permittedOperationsGroupBox, 0, 2, 3, 1)
+        self.foundFiguresGroupBox = QtWidgets.QGroupBox(Dialog)
+        self.foundFiguresGroupBox.setMinimumSize(QtCore.QSize(300, 290))
+        self.foundFiguresGroupBox.setObjectName("foundFiguresGroupBox")
+        self.foundFiguresListWidget = QtWidgets.QListWidget(self.foundFiguresGroupBox)
+        self.foundFiguresListWidget.setGeometry(QtCore.QRect(5, 31, 291, 251))
+        self.foundFiguresListWidget.setMinimumSize(QtCore.QSize(0, 0))
+        self.foundFiguresListWidget.setObjectName("foundFiguresListWidget")
+        self.gridLayout.addWidget(self.foundFiguresGroupBox, 0, 1, 1, 1)
+        self.figureDataGroupBox = QtWidgets.QGroupBox(Dialog)
+        self.figureDataGroupBox.setObjectName("figureDataGroupBox")
+        self.figureDataTextEdit = QtWidgets.QTextEdit(self.figureDataGroupBox)
+        self.figureDataTextEdit.setGeometry(QtCore.QRect(10, 30, 281, 81))
+        self.figureDataTextEdit.setObjectName("figureDataTextEdit")
+        self.gridLayout.addWidget(self.figureDataGroupBox, 1, 1, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.commandsListWidget = QtWidgets.QListWidget(Dialog)
         self.commandsListWidget.setMinimumSize(QtCore.QSize(0, 150))
@@ -63,8 +69,17 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Kontrola automatyczna"))
         self.executeCommandPushButton.setText(_translate("Dialog", "Wykonaj"))
-        self.foundFiguresGroupBox.setTitle(_translate("Dialog", "Lista  znalezionych figur"))
         self.returnPushButton.setText(_translate("Dialog", "Powrót"))
         self.highlightFiguresCheckBox.setText(_translate("Dialog", "Zanznacz figure na obrazie"))
         self.permittedOperationsGroupBox.setTitle(_translate("Dialog", "Lista możliwych operacji"))
+        self.foundFiguresGroupBox.setTitle(_translate("Dialog", "Lista  znalezionych figur"))
+        self.figureDataGroupBox.setTitle(_translate("Dialog", "Dane figury"))
+        self.figureDataTextEdit.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Numer : </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Kolor :    </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Środek : </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Kąt : </p></body></html>"))
 

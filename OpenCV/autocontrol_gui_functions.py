@@ -21,6 +21,7 @@ class AutocontrolGUI(QtWidgets.QDialog):
         self.ui.highlightFiguresCheckBox.stateChanged.connect(self.openCVWorker.receiveHighLightEnable)
         self.ui.foundFiguresListWidget.currentRowChanged.connect(self.openCVWorker.receiveSelectedFigureNumber)
         self.openCVWorker.sendFigureText.connect(self.receiveFigureText)
+        self.openCVWorker.sendFigureData.connect(self.receiveFigureData)
 
     def startOpenCVWorker(self):
         self.openCVWorker.runThread = True
@@ -37,8 +38,12 @@ class AutocontrolGUI(QtWidgets.QDialog):
     def receiveFigureText(self, text):
         self.ui.foundFiguresListWidget.addItem(text)
 
+    def receiveFigureData(self, data):
+        self.ui.figureDataTextEdit.setText(data)
+
     def returnToControlGui(self):
         self.ui.foundFiguresListWidget.clear()
+        self.ui.figureDataTextEdit.setText("Numer : \nKolor : \nŚrodek : \nKąt : ")
         self.openCVWorker.runThread = False
         self.openCVWorkerThread.join()
         del self.openCVWorkerThread
