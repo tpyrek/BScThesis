@@ -71,7 +71,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="6" column="1">
       <widget class="QPushButton" name="okPushButton">
        <property name="minimumSize">
         <size>
@@ -97,7 +97,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0" rowspan="6">
+     <item row="0" column="0" rowspan="7">
       <widget class="QLabel" name="openCVLabel">
        <property name="minimumSize">
         <size>
@@ -107,6 +107,19 @@
        </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QPushButton" name="skipCalibrationPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pomiń kalibracje</string>
        </property>
       </widget>
      </item>
