@@ -24,13 +24,14 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
 
         self.disableConfigurationButtons()
-        #self.ui.okPushButton.setDisabled(True)
+        self.ui.okPushButton.setDisabled(True)
         # Licznik enableOkButton - Zostaje zwiekszony przy pobraniu każdego koloru i kiedy wszystkie kolory zostaną pobrane,
         # zostaje odblokowany przycisk okPushButton
         self.enableOkButton = 0
         self.firstFrame = True
 
         self.ui.commandsListWidget.addItem("Kalibracja kolorów")
+        self.ui.skipCalibrationPushButton.setStyleSheet("background-color: red")
 
         # Połączenie sygnałów ze slotami
         self.ui.instructionPushButton.clicked.connect(self.openInstructionWindow)
@@ -39,6 +40,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
         self.ui.setGreenPushButton.clicked.connect(self.setGreenColor)
         self.ui.setRedPushButton.clicked.connect(self.setRedColor)
         self.ui.okPushButton.clicked.connect(self.openControlWindow)
+        self.ui.skipCalibrationPushButton.clicked.connect(self.skipCalibration)
         self.openCVWorker.sendFrame.connect(self.receiveFrame)
         self.sendSignalToSetColor.connect(self.openCVWorker.getColorFromFrame)
         self.openCVWorker.sendText.connect(self.receiveText)
@@ -102,6 +104,29 @@ class ConfigurationGUI(QtWidgets.QDialog):
         self.close()
         self.controlgui.show()
         self.controlgui.openSerialPort()
+
+    def skipCalibration(self):
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setIcon(QtWidgets.QMessageBox.Warning)
+        messageBox.setWindowTitle("Uwaga")
+        messageBox.setText("Jeśli pominiesz ten krok, aplikacja może nie działać poprawnie!")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.No)
+        messageBoxButtonYes = messageBox.button(QtWidgets.QMessageBox.Yes)
+        messageBoxButtonYes.setText("Ok, pomiń")
+        messageBoxButtonNo = messageBox.button(QtWidgets.QMessageBox.No)
+        messageBoxButtonNo.setText("Wróć")
+        messageBox.exec()
+
+        if messageBox.clickedButton() == messageBoxButtonYes:
+            self.openCVWorker.runThread = False
+            self.openCVWorkerThread.join()
+            del self.openCVWorkerThread
+            self.close()
+            self.controlgui.show()
+            self.controlgui.openSerialPort()
+
+        elif messageBox.clickedButton() == messageBoxButtonNo:
+            return
 
 
     # FUNKCJE
