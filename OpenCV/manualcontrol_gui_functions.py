@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 from manualcontrol_gui import Ui_Dialog
-import sendDataToServosController
+import sendDataToServosControllerManualControlGUI
 import threading
 
 class ManualcontrolGUI(QtWidgets.QDialog):
@@ -11,7 +11,8 @@ class ManualcontrolGUI(QtWidgets.QDialog):
         self.ui.setupUi(self)
         self.initialize()
         self.controlgui = controlgui
-        self.sendDataToServosController = sendDataToServosController.sendDataToServosController()
+        self.sendDataToServosController = \
+            sendDataToServosControllerManualControlGUI.sendDataToServosControllerManualControlGUI()
 
         self.ui.returnPushButton.clicked.connect(self.returnToControlGui)
         self.ui.neutralPositionPushButton.clicked.connect(self.setNeutralPosition)
@@ -30,7 +31,7 @@ class ManualcontrolGUI(QtWidgets.QDialog):
         self.ui.servo6HorizontalSlider.valueChanged.connect(self.servo6SliderValueChanged)
 
         self.sendDataToServosController.sendStatus.connect(self.enableAllWidgets)
-        self.sendDataToServosController.sendText.connect(self.receiveText)
+        self.sendDataToServosController.sendCommandsText.connect(self.receiveCommandsText)
 
     def initialize(self):
         self.ui.servo1HorizontalSlider.setMaximum(1000)
@@ -70,7 +71,7 @@ class ManualcontrolGUI(QtWidgets.QDialog):
         self.ui.speedSpinBox.setValue(30)
         self.ui.commandsListWidget.addItem("Manualna kontrola ramienia")
 
-    def receiveText(self, text):
+    def receiveCommandsText(self, text):
         self.ui.commandsListWidget.addItem(text)
 
     def returnToControlGui(self):
