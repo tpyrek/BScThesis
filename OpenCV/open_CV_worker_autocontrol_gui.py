@@ -13,9 +13,10 @@ class openCVWorker(QtCore.QObject):
     # Sygnał emitowany w celu dodania figury do listy znalezionych figur w autocontrol
     sendFigureText = QtCore.pyqtSignal(str)
     sendFigureData = QtCore.pyqtSignal(str)
+    sendFigureDataTextClear = QtCore.pyqtSignal()
 
 
-    def __init__(self, parent=None):
+    def __init__(self, sendDataToServosController, parent=None):
         QtCore.QObject.__init__(self, parent)
 
         # Orginal grabbed frame
@@ -27,10 +28,15 @@ class openCVWorker(QtCore.QObject):
         self.runThread = True
         self.highlightFigure = False
 
+        # Po wykonaniu akcji przez servosController zostaje wyemitowany sygnał do odświeżenia figur znajdujacych
+        # sie na polu
+        self.sendDataToServosController = sendDataToServosController
         # Magazyn do przechowywania znalezionych figur
         self.figuresStore = figuresStorage.FiguresStore()
         # Numer figury aktualnie wybranej z listy w oknie autocontrol
         self.selectedFigureNumber = None
+
+        self.sendDataToServosController.sendStatus.connect(self.getFigures)
 
 
     # Funkcja odpowiedzialna za podkreślanie figur na obrazie
@@ -45,11 +51,7 @@ class openCVWorker(QtCore.QObject):
 
     # cameraDeviceNumber - numer uchwytu kamery
     def receiveSetup(self, cameraDeviceNumber: int):
-        try:
-            self.capture.open(cameraDeviceNumber)
-        except:
-
-            pass
+        self.capture.open(cameraDeviceNumber)
 
     def receiveHighLightEnable(self):
         self.highlightFigure = not self.highlightFigure
@@ -67,9 +69,7 @@ class openCVWorker(QtCore.QObject):
 
         # Pobranie pierwszej klatki w celu znalezienia figur
         self.frameOriginal = cv2.imread('test4.png')
-        figuresProcess.figuresProcess(self.figuresStore, self.frameOriginal)
-        for fi in self.figuresStore.figures:
-            self.sendFigureText.emit("Figura : " + str(fi.figureNumber) + ", Kolor : " + str(fi.color))
+        self.getFigures()
 
         while not self.capture.isOpened():
             pass
@@ -101,11 +101,19 @@ class openCVWorker(QtCore.QObject):
         self.clenVariables()
 
     def receiveSelectedFigureNumber(self, rowNumber):
-        self.selectedFigureNumber = rowNumber
-        self.sendFigureData.emit("Numer : " + str(self.figuresStore.figures[self.selectedFigureNumber].figureNumber)
-                                 + "\nKolor : "
-                                 + str(self.figuresStore.figures[self.selectedFigureNumber].color)
-                                 + "\nŚrodek : "
-                                 + str(self.figuresStore.figures[self.selectedFigureNumber].coordinates)
-                                 + "\nKąt : "
-                                 + str(self.figuresStore.figures[self.selectedFigureNumber].angle))
+        if rowNumber != -1:
+            self.selectedFigureNumber = rowNumber
+            self.sendFigureData.emit("Numer : " + str(self.figuresStore.figures[self.selectedFigureNumber].figureNumber)
+                                     + "\nKolor : "
+                                     + str(self.figuresStore.figures[self.selectedFigureNumber].color)
+                                     + "\nŚrodek : "
+                                     + str(self.figuresStore.figures[self.selectedFigureNumber].coordinates)
+                                     + "\nKąt : "
+                                     + str(self.figuresStore.figures[self.selectedFigureNumber].angle))
+
+    def getFigures(self):
+        self.clenVariables()
+        self.sendFigureDataTextClear.emit()
+        figuresProcess.figuresProcess(self.figuresStore, self.frameOriginal)
+        for fi in self.figuresStore.figures:
+            self.sendFigureText.emit("Figura : " + str(fi.figureNumber) + ", Kolor : " + str(fi.color))
