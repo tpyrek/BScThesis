@@ -45,7 +45,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
         self.sendSignalToSetColor.connect(self.openCVWorker.getColorFromFrame)
         self.openCVWorker.sendText.connect(self.receiveText)
 
-        self.openCVWorker.receiveSetup(0)
+        self.openCVWorker.receiveSetup(1)
         self.openCVWorkerThread.start()
 
     # SLOTY
@@ -68,6 +68,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
     def setBlueColor(self):
         self.ui.setBluePushButton.setDisabled(True)
+        self.ui.skipCalibrationPushButton.setDisabled(True)
         self.enableOkButton = self.enableOkButton + 1
         if self.enableOkButton == 4:
             self.ui.okPushButton.setEnabled(True)
@@ -76,6 +77,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
     def setYellowColor(self):
         self.ui.setYellowPushButton.setDisabled(True)
+        self.ui.skipCalibrationPushButton.setDisabled(True)
         self.enableOkButton = self.enableOkButton + 1
         if self.enableOkButton == 4:
             self.ui.okPushButton.setEnabled(True)
@@ -84,6 +86,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
     def setGreenColor(self):
         self.ui.setGreenPushButton.setDisabled(True)
+        self.ui.skipCalibrationPushButton.setDisabled(True)
         self.enableOkButton = self.enableOkButton + 1
         if self.enableOkButton == 4:
             self.ui.okPushButton.setEnabled(True)
@@ -92,6 +95,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
     def setRedColor(self):
         self.ui.setRedPushButton.setDisabled(True)
+        self.ui.skipCalibrationPushButton.setDisabled(True)
         self.enableOkButton = self.enableOkButton + 1
         if self.enableOkButton == 4:
             self.ui.okPushButton.setEnabled(True)
@@ -108,7 +112,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
     def skipCalibration(self):
         messageBox = QtWidgets.QMessageBox()
         messageBox.setIcon(QtWidgets.QMessageBox.Warning)
-        messageBox.setWindowTitle("Uwaga")
+        messageBox.setWindowTitle("Uwaga !")
         messageBox.setText("Jeśli pominiesz ten krok, aplikacja może nie działać poprawnie!")
         messageBox.setStandardButtons(QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.No)
         messageBoxButtonYes = messageBox.button(QtWidgets.QMessageBox.Yes)
