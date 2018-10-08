@@ -63,7 +63,7 @@ void ServoSetup::shiftServo(uint8_t servoID)
     for(uint8_t i = servosDataTable[servoID].servoLastPosition; i >= servosDataTable[servoID].servoNewPosition; i--)
     {
       servoObjectsTable[servoID].write(i);
-      delayMicroseconds(speedValue*1000); //convert to us
+      delay(speedValue); //convert to us
     }     
   }
   else if(servosDataTable[servoID].servoLastPosition < servosDataTable[servoID].servoNewPosition)
@@ -71,7 +71,7 @@ void ServoSetup::shiftServo(uint8_t servoID)
     for(uint8_t i = servosDataTable[servoID].servoLastPosition; i <= servosDataTable[servoID].servoNewPosition; i++)
      {
       servoObjectsTable[servoID].write(i);
-      delayMicroseconds(speedValue*1000); //convert to us
+      delay(speedValue); //convert to us
     }     
   }
   
