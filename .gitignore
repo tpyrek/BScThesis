@@ -1,2 +1,3 @@
 OpenCV/.idea/
 OpenCV/__pycache__/
+*.pyc

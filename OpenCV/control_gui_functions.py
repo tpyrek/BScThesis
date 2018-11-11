@@ -17,6 +17,10 @@ class ControlGUI(QtWidgets.QDialog):
         self.ui.autoControlPushButton.clicked.connect(self.openAutoControlWindow)
         self.ui.manualControlPushButton.clicked.connect(self.openManualControlWindow)
 
+    def __del__(self):
+        if not serial.is_open:
+            self.serial.close()
+
     def openSerialPort(self):
         self.serial.baudrate = 9600
         self.serial.port = '/dev/ttyUSB0'

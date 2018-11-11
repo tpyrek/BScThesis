@@ -144,26 +144,26 @@ class openCVWorker(QtCore.QObject):
         if h > 155 or h < 15:
             self.sendText.emit(color + " : H = " + str(h) + ", S = " + str(s) + ", V = " + str(v))
             if h < 15:
-                colorLower = numpy.array([0, s-20, v-20], numpy.uint8)  # Dolny zakres koloru
-                colorUpper = numpy.array([h + 15, 255, 255], numpy.uint8)  # Górny zakres koloru
+                colorLower = numpy.array([0, s-20, v-85], numpy.uint8)  # Dolny zakres koloru
+                colorUpper = numpy.array([h + 10, 255, 255], numpy.uint8)  # Górny zakres koloru
 
                 color = "RedBottom"
                 self.setColorsRangeInIniFile(color, colorLower, colorUpper)
 
-                colorLower = numpy.array([160, s - 20, v - 20], numpy.uint8)  # Dolny zakres koloru
+                colorLower = numpy.array([160, s - 20, v - 85], numpy.uint8)  # Dolny zakres koloru
                 colorUpper = numpy.array([180, 255, 255], numpy.uint8)  # Górny zakres koloru
 
                 color = "RedTop"
                 self.setColorsRangeInIniFile(color, colorLower, colorUpper)
 
             if h > 155:
-                colorLower = numpy.array([h - 15, s-20, v-20], numpy.uint8)  # Dolny zakres koloru
+                colorLower = numpy.array([h - 10, s-20, v-85], numpy.uint8)  # Dolny zakres koloru
                 colorUpper = numpy.array([180, 255, 255], numpy.uint8)  # Górny zakres koloru
 
                 color = color+"Top"
                 self.setColorsRangeInIniFile(color, colorLower, colorUpper)
 
-                colorLower = numpy.array([0, s - 20, v - 20], numpy.uint8)  # Dolny zakres koloru
+                colorLower = numpy.array([0, s - 20, v - 85], numpy.uint8)  # Dolny zakres koloru
                 colorUpper = numpy.array([10, 255, 255], numpy.uint8)  # Górny zakres koloru
 
                 color = color + "Bottom"
@@ -171,8 +171,8 @@ class openCVWorker(QtCore.QObject):
 
         # Dla reszty kolorów
         else:
-            colorLower = numpy.array([h - 15, s-20, v-20], numpy.uint8)  # Dolny zakres koloru
-            colorUpper = numpy.array([h + 15, 255, 255], numpy.uint8)  # Górny zakres koloru
+            colorLower = numpy.array([h - 10, s-20, v-85], numpy.uint8)  # Dolny zakres koloru
+            colorUpper = numpy.array([h + 10, 255, 255], numpy.uint8)  # Górny zakres koloru
 
             # Zapisanie wartości w pliku
             self.setColorsRangeInIniFile(color, colorLower, colorUpper)

@@ -4,6 +4,8 @@ import open_CV_worker_autocontrol_gui
 import sendDataToServosControllerAutoControlGUI
 import threading
 
+from fields_coordinates import field_coordinates_table
+
 
 class AutocontrolGUI(QtWidgets.QDialog):
 
@@ -72,12 +74,31 @@ class AutocontrolGUI(QtWidgets.QDialog):
 
                 self.disableAllWidgets()
 
+                figure_number = self.ui.foundFiguresListWidget.currentRow()
+                figure_field = self.openCVWorker.getFigureField(figure_number)
+
+                dataTab = []
+                dataTab.append(0)  # Max value
+                dataTab.append(1000)  # Min value
+                dataTab.append(60)  # Speed
+
+                for value in field_coordinates_table[figure_field]:
+                    dataTab.append(value)
+
+                dataTab.append(1)
+                dataTab.append(2)
+                dataTab.append(3)
+                dataTab.append(4)
+                dataTab.append(5)
+                dataTab.append(6)
+
                 thread = threading.Thread(target=self.sendDataToServosController.sendData,
-                                          args=(self.controlgui.serial, 0, 1000, 50,
-                                                500, 300, 350, 650, 700, 200,
-                                                1, 2, 3, 4, 5,
-                                                6))
+                                          args=(self.controlgui.serial, dataTab[0], dataTab[1], dataTab[2],
+                                                dataTab[3], dataTab[4], dataTab[5], dataTab[6], dataTab[7], dataTab[8],
+                                                dataTab[9], dataTab[10], dataTab[11], dataTab[12], dataTab[13],
+                                                dataTab[14]))
                 thread.start()
+
 
     def enableAllWidgets(self):
         self.ui.executeCommandPushButton.setEnabled(True)

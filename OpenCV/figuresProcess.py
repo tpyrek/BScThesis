@@ -24,7 +24,7 @@ def getColorsRangeFromIniFile():
                                   dtype=np.uint8, sep=',') # Górny zakres koloru niebieskiego
     # Jeśli nie ma takiej sekcji to defaultowy zakres
     else:
-        blueLower = np.array([90, 30, 30], np.uint8)        # Dolny zakres koloru niebieskiego
+        blueLower = np.array([90, 95, 100], np.uint8)        # Dolny zakres koloru niebieskiego
         blueUpper = np.array([125, 255, 255], np.uint8)     # Górny zakres koloru niebieskiego
 
     # Sprawdzam czy jest sekcja 'Green' w pliku konfiguracyjnym
@@ -36,8 +36,8 @@ def getColorsRangeFromIniFile():
                                    dtype=np.uint8, sep=',')   # Górny zakres koloru zielonego
     # Jeśli nie ma takiej sekcji to defaultowy zakres
     else:
-        greenLower = np.array([50, 120, 140], np.uint8)     # Dolny zakres koloru zielonego
-        greenUpper = np.array([65, 255, 255], np.uint8)     # Górny zakres koloru zielonego
+        greenLower = np.array([44, 54, 63], np.uint8)     # Dolny zakres koloru zielonego
+        greenUpper = np.array([71, 255, 255], np.uint8)     # Górny zakres koloru zielonego
 
     # Sprawdzam czy jest sekcja 'Yellow' w pliku konfiguracyjnym
     if 'Yellow' in configpar:
@@ -109,6 +109,9 @@ def calculateAngle(p1, p2, p3):
 
     delta_x_p2 = p2[0]-p1[0]
     delta_y_p2 = p2[1]-p1[1]
+
+    if p3[0] == p1[0]:
+        p3 = tuple([p3[0]-1, p3[1]])
 
     # Sprawdzam czy współrzędna x wierzchołka jest większa czy mniejsza od współrzędnej x cross-pointa i
     # zależnie od tego czy większe czy mniejsze wyliczam kąty
@@ -196,6 +199,8 @@ def calculateAndSetFigureValues(figure):
 # Main function
 def figuresProcess(figuresStore, frame):
 
+    #cv2.medianBlur(frame, frame, 3)
+
     frameHSV = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)              # Konwersja prezentacji barw z RGB na HSV
 
     #Pobranie zakresów kolorów z pliku konfiguracyjnego
@@ -217,6 +222,7 @@ def figuresProcess(figuresStore, frame):
     threshFrameBlue = deleteNoise(threshFrameBlue)          # Usunięcie szumów z obrazka
     threshFrameGreen = deleteNoise(threshFrameGreen)        # Usunięcie szumów z obrazka
     threshFrameYellow = deleteNoise(threshFrameYellow)      # Usunięcie szumów z obrazka
+
 
     # Znalezienie konturów
     (check_blue, contours_blue, hierarchy_blue) = cv2.findContours(threshFrameBlue.copy(),

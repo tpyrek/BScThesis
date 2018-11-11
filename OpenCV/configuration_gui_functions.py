@@ -45,7 +45,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
         self.sendSignalToSetColor.connect(self.openCVWorker.getColorFromFrame)
         self.openCVWorker.sendText.connect(self.receiveText)
 
-        self.openCVWorker.receiveSetup(1)
+        self.openCVWorker.receiveSetup(0)
         self.openCVWorkerThread.start()
 
     # SLOTY
