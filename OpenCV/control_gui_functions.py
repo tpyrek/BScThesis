@@ -13,6 +13,8 @@ class ControlGUI(QtWidgets.QDialog):
         self.autocontolgui = AutocontrolGUI(self)
         self.manualcontrolgui = ManualcontrolGUI(self)
         self.serial = serial.Serial()
+        self.serial.baudrate = 9600
+        self.serial.port = '/dev/ttyUSB0'
 
         self.ui.autoControlPushButton.clicked.connect(self.openAutoControlWindow)
         self.ui.manualControlPushButton.clicked.connect(self.openManualControlWindow)
@@ -22,11 +24,10 @@ class ControlGUI(QtWidgets.QDialog):
             self.serial.close()
 
     def openSerialPort(self):
-        self.serial.baudrate = 9600
-        self.serial.port = '/dev/ttyUSB0'
         try:
             self.serial.open()
-        except:
+        except serial.SerialException as e:
+            print(e)
             pass
 
 
