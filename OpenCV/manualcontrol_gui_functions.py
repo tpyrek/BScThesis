@@ -3,7 +3,8 @@ from manualcontrol_gui import Ui_Dialog
 import sendDataToServosControllerManualControlGUI
 import threading
 
-class ManualcontrolGUI(QtWidgets.QDialog):
+
+class ManualControlGUI(QtWidgets.QDialog):
 
     def __init__(self, controlgui, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
@@ -109,7 +110,6 @@ class ManualcontrolGUI(QtWidgets.QDialog):
                                         dataTab[9], dataTab[10], dataTab[11], dataTab[12], dataTab[13],
                                         dataTab[14]))
         thread.start()
-
 
     def servo2SliderValueChanged(self):
         self.ui.servo2LocationLabel.setText(

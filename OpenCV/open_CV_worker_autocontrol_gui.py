@@ -8,6 +8,7 @@ from time import sleep
 import threading
 import configparser
 
+
 class openCVWorker(QtCore.QObject):
 
     # SYGNAŁY
@@ -18,7 +19,6 @@ class openCVWorker(QtCore.QObject):
     sendFigureData = QtCore.pyqtSignal(str)
     sendFigureDataTextClear = QtCore.pyqtSignal()
     sendCameraSet = QtCore.pyqtSignal()
-
 
     def __init__(self, sendDataToServosController, parent=None):
         QtCore.QObject.__init__(self, parent)

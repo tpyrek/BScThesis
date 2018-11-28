@@ -7,7 +7,7 @@ import threading
 from fields_coordinates import field_coordinates_table
 
 
-class AutocontrolGUI(QtWidgets.QDialog):
+class AutoControlGUI(QtWidgets.QDialog):
 
     def __init__(self, controlgui, parent=None):
         QtWidgets.QWidget.__init__(self, parent)

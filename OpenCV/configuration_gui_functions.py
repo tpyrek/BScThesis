@@ -65,7 +65,6 @@ class ConfigurationGUI(QtWidgets.QDialog):
     def openInstructionWindow(self):
         self.instructiongui.show()
 
-
     def setBlueColor(self):
         self.ui.setBluePushButton.setDisabled(True)
         self.ui.skipCalibrationPushButton.setDisabled(True)
@@ -73,7 +72,6 @@ class ConfigurationGUI(QtWidgets.QDialog):
         if self.enableOkButton == 4:
             self.ui.okPushButton.setEnabled(True)
         self.sendSignalToSetColor.emit("Blue")
-
 
     def setYellowColor(self):
         self.ui.setYellowPushButton.setDisabled(True)
@@ -83,7 +81,6 @@ class ConfigurationGUI(QtWidgets.QDialog):
             self.ui.okPushButton.setEnabled(True)
         self.sendSignalToSetColor.emit("Yellow")
 
-
     def setGreenColor(self):
         self.ui.setGreenPushButton.setDisabled(True)
         self.ui.skipCalibrationPushButton.setDisabled(True)
@@ -91,7 +88,6 @@ class ConfigurationGUI(QtWidgets.QDialog):
         if self.enableOkButton == 4:
             self.ui.okPushButton.setEnabled(True)
         self.sendSignalToSetColor.emit("Green")
-
 
     def setRedColor(self):
         self.ui.setRedPushButton.setDisabled(True)
@@ -131,7 +127,6 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
         elif messageBox.clickedButton() == messageBoxButtonNo:
             return
-
 
     # FUNKCJE
     def disableConfigurationButtons(self):

@@ -2,6 +2,7 @@ from PyQt5 import QtCore
 import struct
 from time import sleep
 
+
 # Do automatycznej kontroli ramienia
 class sendDataToServosControllerAutoControlGUI(QtCore.QObject):
 

@@ -1,7 +1,8 @@
 from PyQt5 import QtCore
 import struct
 
-#Do manualnej kontroli ramienia
+
+# Do manualnej kontroli ramienia
 class sendDataToServosControllerManualControlGUI(QtCore.QObject):
 
     # Signals

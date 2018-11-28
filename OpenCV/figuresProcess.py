@@ -238,7 +238,6 @@ def figuresProcess(figuresStore, frame):
         f = figuresStorage.Figure(figuresStore.quantity, 0, 0, "blue", contours_blue[i], 0, None)
         figuresStore.addFigure(f)
 
-
     for i in range(0,len(contours_green)):
         f = figuresStorage.Figure(figuresStore.quantity, 0, 0, "green", contours_green[i], 0, None)
         figuresStore.addFigure(f)
@@ -246,7 +245,6 @@ def figuresProcess(figuresStore, frame):
     for i in range(0, len(contours_yellow)):
         f = figuresStorage.Figure(figuresStore.quantity, 0, 0, "yellow", contours_yellow[i], 0, None)
         figuresStore.addFigure(f)
-
 
     for i in range(0,figuresStore.quantity):
         calculateAndSetFigureValues(figuresStore.figures[i])

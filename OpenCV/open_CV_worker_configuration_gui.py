@@ -4,6 +4,7 @@ import numpy
 import configparser
 from time import sleep
 
+
 class openCVWorker(QtCore.QObject):
 
     # SYGNAŁY
@@ -36,7 +37,6 @@ class openCVWorker(QtCore.QObject):
     def receiveSetup(self, cameraDeviceNumber: int):
         # Start pobierania ramek
         self.capture.open(cameraDeviceNumber)
-
 
     def endGrabbing(self):
         if self.capture.isOpened():

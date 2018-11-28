@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 from control_gui import Ui_Dialog
-from autocontrol_gui_functions import AutocontrolGUI
-from manualcontrol_gui_functions import ManualcontrolGUI
+from autocontrol_gui_functions import AutoControlGUI
+from manualcontrol_gui_functions import ManualControlGUI
 import serial
 
 class ControlGUI(QtWidgets.QDialog):
@@ -10,8 +10,8 @@ class ControlGUI(QtWidgets.QDialog):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.autocontolgui = AutocontrolGUI(self)
-        self.manualcontrolgui = ManualcontrolGUI(self)
+        self.autocontolgui = AutoControlGUI(self)
+        self.manualcontrolgui = ManualControlGUI(self)
         self.serial = serial.Serial()
         self.serial.baudrate = 9600
         self.serial.port = '/dev/ttyUSB0'
@@ -30,12 +30,10 @@ class ControlGUI(QtWidgets.QDialog):
             print(e)
             pass
 
-
     def openAutoControlWindow(self):
         self.close()
         self.autocontolgui.show()
         self.autocontolgui.startOpenCVWorker()
-
 
     def openManualControlWindow(self):
         self.close()
