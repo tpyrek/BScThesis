@@ -37,7 +37,7 @@ class AutoControlGUI(QtWidgets.QDialog):
 
     def startOpenCVWorker(self):
         self.openCVWorker.runThread = True
-        self.openCVWorker.receiveSetup(1)
+        self.openCVWorker.receiveSetup(0)
         self.openCVWorkerThread = threading.Thread(target=self.openCVWorker.receiveGrabFrame)
         # Daemon thread zostanie zabity automatycznie przy zamknięciu aplikacji
         self.openCVWorkerThread.daemon = True
