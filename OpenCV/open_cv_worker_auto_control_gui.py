@@ -206,7 +206,7 @@ class OpenCVWorker(QtCore.QObject):
         self.send_figure_data_text_clear.emit()
         figures_process(self.figure_store, self.frame_original)
         for fi in self.figure_store.figures:
-            self.send_figure_text.emit("Figura : " + str(fi.figureNumber) + ", Kolor : " + str(fi.color))
+            self.send_figure_text.emit("Figura : " + str(fi.figure_number) + ", Kolor : " + str(fi.color))
 
     def receive_camera_set(self):
         self.camera_set = True
