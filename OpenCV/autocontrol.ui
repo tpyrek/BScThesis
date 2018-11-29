@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="3" column="1" colspan="2">
-      <widget class="QPushButton" name="executeCommandPushButton">
+      <widget class="QPushButton" name="execute_command_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -36,7 +36,7 @@
       </widget>
      </item>
      <item row="4" column="0" colspan="3">
-      <widget class="QPushButton" name="returnPushButton">
+      <widget class="QPushButton" name="return_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -55,7 +55,7 @@
       </widget>
      </item>
      <item row="0" column="0" rowspan="4">
-      <widget class="QLabel" name="openCVLabel">
+      <widget class="QLabel" name="open_cv_label">
        <property name="minimumSize">
         <size>
          <width>640</width>
@@ -68,14 +68,14 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QCheckBox" name="highlightFiguresCheckBox">
+      <widget class="QCheckBox" name="highlight_figures_check_box">
        <property name="text">
         <string>Zanznacz figure na obrazie</string>
        </property>
       </widget>
      </item>
      <item row="0" column="2" rowspan="3">
-      <widget class="QGroupBox" name="permittedOperationsGroupBox">
+      <widget class="QGroupBox" name="permitted_operations_group_box">
        <property name="minimumSize">
         <size>
          <width>300</width>
@@ -85,7 +85,7 @@
        <property name="title">
         <string>Lista możliwych operacji</string>
        </property>
-       <widget class="QListWidget" name="permittedOperationsListWidget">
+       <widget class="QListWidget" name="permitted_operations_list_widget">
         <property name="geometry">
          <rect>
           <x>5</x>
@@ -98,7 +98,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QGroupBox" name="foundFiguresGroupBox">
+      <widget class="QGroupBox" name="found_figures_group_box">
        <property name="minimumSize">
         <size>
          <width>300</width>
@@ -108,7 +108,7 @@
        <property name="title">
         <string>Lista  znalezionych figur</string>
        </property>
-       <widget class="QListWidget" name="foundFiguresListWidget">
+       <widget class="QListWidget" name="found_figures_list_widget">
         <property name="geometry">
          <rect>
           <x>5</x>
@@ -127,11 +127,11 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QGroupBox" name="figureDataGroupBox">
+      <widget class="QGroupBox" name="figure_data_group_box">
        <property name="title">
         <string>Dane figury</string>
        </property>
-       <widget class="QTextEdit" name="figureDataTextEdit">
+       <widget class="QTextEdit" name="figure_data_text_edit">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -156,7 +156,7 @@ p, li { white-space: pre-wrap; }
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QListWidget" name="commandsListWidget">
+    <widget class="QListWidget" name="commands_list_widget">
      <property name="minimumSize">
       <size>
        <width>0</width>
