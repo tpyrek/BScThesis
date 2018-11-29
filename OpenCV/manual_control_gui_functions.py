@@ -26,12 +26,12 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.ui.servo4_horizontal_slider.sliderReleased.connect(self.servo4_set_value)
         self.ui.servo4_horizontal_slider.valueChanged.connect(self.servo4_slider_value_changed)
         self.ui.servo5_horizontal_slider.sliderReleased.connect(self.servo5_set_value)
-        self.ui.servo5_horizontal_slider.valueChanged.connect(self.servo5SliderValueChanged)
+        self.ui.servo5_horizontal_slider.valueChanged.connect(self.servo5_slider_value_changed)
         self.ui.servo6_horizontal_slider.sliderReleased.connect(self.servo6_set_value)
         self.ui.servo6_horizontal_slider.valueChanged.connect(self.servo6_slider_value_changed)
 
         self.send_data_to_servos_controller.send_status.connect(self.enable_all_widgets)
-        self.send_data_to_servos_controller.send_commandsText.connect(self.receive_commands_text)
+        self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
 
     def initialize(self):
         self.ui.servo1_horizontal_slider.setMaximum(1000)

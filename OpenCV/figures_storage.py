@@ -29,6 +29,6 @@ class FiguresStore(object):
         self.quantity -= 1                        # Zmniejszenie ilości figur o jeden
         self.figures.pop(index)                 # Usunięcie obiektu z tabeli
 
-    def clean(self):
+    def clear(self):
         self.quantity = 0
         self.figures.clear()
