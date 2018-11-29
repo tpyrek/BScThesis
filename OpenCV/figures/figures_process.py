@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import math
 import configparser
-from figures_storage import Figure
+from figures.figures_storage import Figure
 
 
 # Definicje funkcji
