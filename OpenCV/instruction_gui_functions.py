@@ -9,7 +9,7 @@ class InstructionGUI(QtWidgets.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.ui.closePushButton.clicked.connect(self.closeWindow)
+        self.ui.close_push_button.clicked.connect(self.close_window)
 
-    def closeWindow(self):
+    def close_window(self):
         self.close()
