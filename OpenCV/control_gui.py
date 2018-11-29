@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'control.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.2
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,22 +17,22 @@ class Ui_Dialog(object):
         self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.chooseModeLabel = QtWidgets.QLabel(Dialog)
-        self.chooseModeLabel.setMinimumSize(QtCore.QSize(100, 50))
-        self.chooseModeLabel.setMaximumSize(QtCore.QSize(16777215, 40))
-        self.chooseModeLabel.setAlignment(QtCore.Qt.AlignCenter)
-        self.chooseModeLabel.setObjectName("chooseModeLabel")
-        self.verticalLayout.addWidget(self.chooseModeLabel)
-        self.manualControlPushButton = QtWidgets.QPushButton(Dialog)
-        self.manualControlPushButton.setMinimumSize(QtCore.QSize(200, 30))
-        self.manualControlPushButton.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.manualControlPushButton.setObjectName("manualControlPushButton")
-        self.verticalLayout.addWidget(self.manualControlPushButton, 0, QtCore.Qt.AlignHCenter)
-        self.autoControlPushButton = QtWidgets.QPushButton(Dialog)
-        self.autoControlPushButton.setMinimumSize(QtCore.QSize(200, 30))
-        self.autoControlPushButton.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.autoControlPushButton.setObjectName("autoControlPushButton")
-        self.verticalLayout.addWidget(self.autoControlPushButton, 0, QtCore.Qt.AlignHCenter)
+        self.choose_mode_label = QtWidgets.QLabel(Dialog)
+        self.choose_mode_label.setMinimumSize(QtCore.QSize(100, 50))
+        self.choose_mode_label.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.choose_mode_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.choose_mode_label.setObjectName("choose_mode_label")
+        self.verticalLayout.addWidget(self.choose_mode_label)
+        self.manual_control_push_button = QtWidgets.QPushButton(Dialog)
+        self.manual_control_push_button.setMinimumSize(QtCore.QSize(200, 30))
+        self.manual_control_push_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.manual_control_push_button.setObjectName("manual_control_push_button")
+        self.verticalLayout.addWidget(self.manual_control_push_button, 0, QtCore.Qt.AlignHCenter)
+        self.auto_control_push_button = QtWidgets.QPushButton(Dialog)
+        self.auto_control_push_button.setMinimumSize(QtCore.QSize(200, 30))
+        self.auto_control_push_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.auto_control_push_button.setObjectName("auto_control_push_button")
+        self.verticalLayout.addWidget(self.auto_control_push_button, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
@@ -41,7 +41,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Wybór trybu"))
-        self.chooseModeLabel.setText(_translate("Dialog", "Wybierz tryb"))
-        self.manualControlPushButton.setText(_translate("Dialog", "Kontrola manualna"))
-        self.autoControlPushButton.setText(_translate("Dialog", "Kontrola automatyczna"))
+        self.choose_mode_label.setText(_translate("Dialog", "Wybierz tryb"))
+        self.manual_control_push_button.setText(_translate("Dialog", "Kontrola manualna"))
+        self.auto_control_push_button.setText(_translate("Dialog", "Kontrola automatyczna"))
 
