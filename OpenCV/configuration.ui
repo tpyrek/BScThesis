@@ -20,7 +20,7 @@
       <number>6</number>
      </property>
      <item row="1" column="1">
-      <widget class="QPushButton" name="setBluePushButton">
+      <widget class="QPushButton" name="set_blue_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -33,7 +33,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QPushButton" name="setGreenPushButton">
+      <widget class="QPushButton" name="set_green_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -46,7 +46,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="instructionPushButton">
+      <widget class="QPushButton" name="instruction_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -59,7 +59,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QPushButton" name="setRedPushButton">
+      <widget class="QPushButton" name="set_red_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -72,7 +72,7 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QPushButton" name="okPushButton">
+      <widget class="QPushButton" name="ok_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -85,7 +85,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QPushButton" name="setYellowPushButton">
+      <widget class="QPushButton" name="set_yellow_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -98,7 +98,7 @@
       </widget>
      </item>
      <item row="0" column="0" rowspan="7">
-      <widget class="QLabel" name="openCVLabel">
+      <widget class="QLabel" name="open_cv_label">
        <property name="minimumSize">
         <size>
          <width>640</width>
@@ -111,7 +111,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QPushButton" name="skipCalibrationPushButton">
+      <widget class="QPushButton" name="skip_calibration_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -126,7 +126,7 @@
     </layout>
    </item>
    <item row="1" column="1">
-    <widget class="QListWidget" name="commandsListWidget">
+    <widget class="QListWidget" name="commands_list_widget">
      <property name="minimumSize">
       <size>
        <width>850</width>

@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="7" column="0" colspan="3">
-      <widget class="QPushButton" name="neutralPositionPushButton">
+      <widget class="QPushButton" name="neutral_position_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -30,7 +30,7 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLabel" name="servo1LocationLabel">
+      <widget class="QLabel" name="servo1_location_label">
        <property name="text">
         <string>5/1000</string>
        </property>
@@ -40,7 +40,7 @@
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QLabel" name="servo2LocationLabel">
+      <widget class="QLabel" name="servo2_location_label">
        <property name="text">
         <string>500/1000</string>
        </property>
@@ -50,7 +50,7 @@
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="servo3Label">
+      <widget class="QLabel" name="servo3_label">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -63,7 +63,7 @@
       </widget>
      </item>
      <item row="5" column="2">
-      <widget class="QLabel" name="servo5LocationLabel">
+      <widget class="QLabel" name="servo5_location_label">
        <property name="text">
         <string>134/1000</string>
        </property>
@@ -73,7 +73,7 @@
       </widget>
      </item>
      <item row="6" column="2">
-      <widget class="QLabel" name="servo6LocationLabel">
+      <widget class="QLabel" name="servo6_location_label">
        <property name="text">
         <string>435/1000</string>
        </property>
@@ -83,7 +83,7 @@
       </widget>
      </item>
      <item row="4" column="2">
-      <widget class="QLabel" name="servo4LocationLabel">
+      <widget class="QLabel" name="servo4_location_label">
        <property name="text">
         <string>400/100</string>
        </property>
@@ -93,7 +93,7 @@
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="servo2Label">
+      <widget class="QLabel" name="servo2_label">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -106,14 +106,14 @@
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QLabel" name="speedLabel">
+      <widget class="QLabel" name="speed_label">
        <property name="text">
         <string>Prędkość przestawiania</string>
        </property>
       </widget>
      </item>
      <item row="3" column="2">
-      <widget class="QLabel" name="servo3LocationLabel">
+      <widget class="QLabel" name="servo3_location_label">
        <property name="text">
         <string>354/1000</string>
        </property>
@@ -123,7 +123,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="servo1Label">
+      <widget class="QLabel" name="servo1_label">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -136,7 +136,7 @@
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="locationLabel">
+      <widget class="QLabel" name="location_label">
        <property name="text">
         <string>Położenie</string>
        </property>
@@ -146,7 +146,7 @@
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="servo5Label">
+      <widget class="QLabel" name="servo5_label">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -159,10 +159,10 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QSpinBox" name="speedSpinBox"/>
+      <widget class="QSpinBox" name="speed_spin_box"/>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="servo6Label">
+      <widget class="QLabel" name="servo6_label">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -175,7 +175,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QSlider" name="servo5HorizontalSlider">
+      <widget class="QSlider" name="servo5_horizontal_slider">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -188,7 +188,7 @@
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="servo4Label">
+      <widget class="QLabel" name="servo4_label">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -201,7 +201,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QSlider" name="servo1HorizontalSlider">
+      <widget class="QSlider" name="servo1_horizontal_slider">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -214,7 +214,7 @@
       </widget>
      </item>
      <item row="8" column="0" colspan="3">
-      <widget class="QPushButton" name="returnPushButton">
+      <widget class="QPushButton" name="return_push_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -227,7 +227,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QSlider" name="servo2HorizontalSlider">
+      <widget class="QSlider" name="servo2_horizontal_slider">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -240,7 +240,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QSlider" name="servo3HorizontalSlider">
+      <widget class="QSlider" name="servo3_horizontal_slider">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -253,7 +253,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QSlider" name="servo4HorizontalSlider">
+      <widget class="QSlider" name="servo4_horizontal_slider">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -266,7 +266,7 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QSlider" name="servo6HorizontalSlider">
+      <widget class="QSlider" name="servo6_horizontal_slider">
        <property name="maximumSize">
         <size>
          <width>400</width>
@@ -279,7 +279,7 @@
       </widget>
      </item>
      <item row="9" column="0" colspan="3">
-      <widget class="QListWidget" name="commandsListWidget">
+      <widget class="QListWidget" name="commands_list_widget">
        <property name="enabled">
         <bool>true</bool>
        </property>
