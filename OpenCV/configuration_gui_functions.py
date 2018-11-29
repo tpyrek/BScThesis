@@ -2,141 +2,141 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 from configuration_gui import Ui_Dialog
 from instruction_gui_functions import InstructionGUI
 from control_gui_functions import ControlGUI
-import open_CV_worker_configuration_gui
+from open_cv_worker_configuration_gui import OpenCVWorker
 import threading
 
 class ConfigurationGUI(QtWidgets.QDialog):
 
-    sendSignalToSetColor = QtCore.pyqtSignal(str)
+    send_signal_to_set_color = QtCore.pyqtSignal(str)
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.instructiongui = InstructionGUI()
-        self.controlgui = ControlGUI()
+        self.instruction_gui = InstructionGUI()
+        self.control_gui = ControlGUI()
 
-        self.openCVWorker = open_CV_worker_configuration_gui.openCVWorker()
-        self.openCVWorkerThread = threading.Thread(target=self.openCVWorker.receiveGrabFrame)
+        self.open_cv_worker = OpenCVWorker()
+        self.open_cv_worker_thread = threading.Thread(target=self.open_cv_worker.receive_grab_frame)
         # Daemon thread zostanie zabity automatycznie przy zamknięciu aplikacji
-        self.openCVWorkerThread.daemon = True
+        self.open_cv_worker_thread.daemon = True
 
+        self.disable_configuration_buttons()
+        self.ui.ok_push_button.setDisabled(True)
+        # Licznik enable_ok_button - Zostaje zwiekszony przy pobraniu każdego koloru i kiedy wszystkie kolory zostaną pobrane,
+        # zostaje odblokowany przycisk ok_push_button
+        self.enable_ok_button = 0
+        self.first_frame = True
 
-        self.disableConfigurationButtons()
-        self.ui.okPushButton.setDisabled(True)
-        # Licznik enableOkButton - Zostaje zwiekszony przy pobraniu każdego koloru i kiedy wszystkie kolory zostaną pobrane,
-        # zostaje odblokowany przycisk okPushButton
-        self.enableOkButton = 0
-        self.firstFrame = True
-
-        self.ui.commandsListWidget.addItem("Kalibracja kolorów")
-        self.ui.skipCalibrationPushButton.setStyleSheet("background-color: red")
+        self.ui.commands_list_widget.addItem("Kalibracja kolorów")
+        self.ui.skip_calibration_push_button.setStyleSheet("background-color: red")
 
         # Połączenie sygnałów ze slotami
-        self.ui.instructionPushButton.clicked.connect(self.openInstructionWindow)
-        self.ui.setBluePushButton.clicked.connect(self.setBlueColor)
-        self.ui.setYellowPushButton.clicked.connect(self.setYellowColor)
-        self.ui.setGreenPushButton.clicked.connect(self.setGreenColor)
-        self.ui.setRedPushButton.clicked.connect(self.setRedColor)
-        self.ui.okPushButton.clicked.connect(self.openControlWindow)
-        self.ui.skipCalibrationPushButton.clicked.connect(self.skipCalibration)
-        self.openCVWorker.sendFrame.connect(self.receiveFrame)
-        self.sendSignalToSetColor.connect(self.openCVWorker.getColorFromFrame)
-        self.openCVWorker.sendText.connect(self.receiveText)
+        self.ui.instruction_push_button.clicked.connect(self.open_instruction_window)
+        self.ui.set_blue_push_button.clicked.connect(self.set_blue_color)
+        self.ui.set_yellow_push_button.clicked.connect(self.set_yellow_color)
+        self.ui.set_green_push_button.clicked.connect(self.set_green_color)
+        self.ui.set_red_push_button.clicked.connect(self.set_red_color)
+        self.ui.ok_push_button.clicked.connect(self.open_control_window)
+        self.ui.skip_calibration_push_button.clicked.connect(self.skip_calibration)
 
-        self.openCVWorker.receiveSetup(0)
-        self.openCVWorkerThread.start()
+        self.send_signal_to_set_color.connect(self.open_cv_worker.getColorFromFrame)
+
+        self.open_cv_worker.send_text.connect(self.receive_text)
+        self.open_cv_worker.send_frame.connect(self.receive_frame)
+        self.open_cv_worker.receive_setup(0)
+        self.open_cv_worker_thread.start()
 
     # SLOTY
 
-    # Ustawienie otrzymanego od openCVWorker tekstu
-    def receiveText(self, text):
-        self.ui.commandsListWidget.addItem(text)
+    # Ustawienie otrzymanego od open_cv_worker tekstu
+    def receive_text(self, text):
+        self.ui.commands_list_widget.addItem(text)
 
-    # Wyświetlenie otrzymanego od openCVWorker obrazka
-    def receiveFrame(self, qImage):
-        if self.firstFrame:
-            self.enableConfigurationButtons()
-            self.firstFrame = False
-        self.ui.openCVLabel.setPixmap(QtGui.QPixmap.fromImage(qImage))
+    # Wyświetlenie otrzymanego od open_cv_worker obrazka
+    def receive_frame(self, q_image):
+        if self.first_frame:
+            self.enable_configuration_buttons()
+            self.first_frame = False
+        self.ui.open_cv_label.setPixmap(QtGui.QPixmap.fromImage(q_image))
 
     # Otwarcie okna instrukcji po naciśnięciu przycisku
-    def openInstructionWindow(self):
-        self.instructiongui.show()
+    def open_instruction_window(self):
+        self.instruction_gui.show()
 
-    def setBlueColor(self):
-        self.ui.setBluePushButton.setDisabled(True)
-        self.ui.skipCalibrationPushButton.setDisabled(True)
-        self.enableOkButton = self.enableOkButton + 1
-        if self.enableOkButton == 4:
-            self.ui.okPushButton.setEnabled(True)
-        self.sendSignalToSetColor.emit("Blue")
+    def set_blue_color(self):
+        self.ui.set_blue_push_button.setDisabled(True)
+        self.ui.skip_calibration_push_button.setDisabled(True)
+        self.enable_ok_button = self.enable_ok_button + 1
+        if self.enable_ok_button == 4:
+            self.ui.ok_push_button.setEnabled(True)
+        self.send_signal_to_set_color.emit("Blue")
 
-    def setYellowColor(self):
-        self.ui.setYellowPushButton.setDisabled(True)
-        self.ui.skipCalibrationPushButton.setDisabled(True)
-        self.enableOkButton = self.enableOkButton + 1
-        if self.enableOkButton == 4:
-            self.ui.okPushButton.setEnabled(True)
-        self.sendSignalToSetColor.emit("Yellow")
+    def set_yellow_color(self):
+        self.ui.set_yellow_push_button.setDisabled(True)
+        self.ui.skip_calibration_push_button.setDisabled(True)
+        self.enable_ok_button = self.enable_ok_button + 1
+        if self.enable_ok_button == 4:
+            self.ui.ok_push_button.setEnabled(True)
+        self.send_signal_to_set_color.emit("Yellow")
 
-    def setGreenColor(self):
-        self.ui.setGreenPushButton.setDisabled(True)
-        self.ui.skipCalibrationPushButton.setDisabled(True)
-        self.enableOkButton = self.enableOkButton + 1
-        if self.enableOkButton == 4:
-            self.ui.okPushButton.setEnabled(True)
-        self.sendSignalToSetColor.emit("Green")
+    def set_green_color(self):
+        self.ui.set_green_push_button.setDisabled(True)
+        self.ui.skip_calibration_push_button.setDisabled(True)
+        self.enable_ok_button = self.enable_ok_button + 1
+        if self.enable_ok_button == 4:
+            self.ui.ok_push_button.setEnabled(True)
+        self.send_signal_to_set_color.emit("Green")
 
-    def setRedColor(self):
-        self.ui.setRedPushButton.setDisabled(True)
-        self.ui.skipCalibrationPushButton.setDisabled(True)
-        self.enableOkButton = self.enableOkButton + 1
-        if self.enableOkButton == 4:
-            self.ui.okPushButton.setEnabled(True)
-        self.sendSignalToSetColor.emit("Red")
+    def set_red_color(self):
+        self.ui.set_red_push_button.setDisabled(True)
+        self.ui.skip_calibration_push_button.setDisabled(True)
+        self.enable_ok_button = self.enable_ok_button + 1
+        if self.enable_ok_button == 4:
+            self.ui.ok_push_button.setEnabled(True)
+        self.send_signal_to_set_color.emit("Red")
 
-    def openControlWindow(self):
-        self.openCVWorker.runThread = False
-        self.openCVWorkerThread.join()
-        del self.openCVWorkerThread
+    def open_control_window(self):
+        self.open_cv_worker.run_thread = False
+        self.open_cv_worker_thread.join()
+        del self.open_cv_worker_thread
         self.close()
-        self.controlgui.show()
-        self.controlgui.openSerialPort()
+        self.control_gui.show()
+        self.control_gui.openSerialPort()
 
-    def skipCalibration(self):
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setIcon(QtWidgets.QMessageBox.Warning)
-        messageBox.setWindowTitle("Uwaga !")
-        messageBox.setText("Jeśli pominiesz ten krok, aplikacja może nie działać poprawnie!")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.No)
-        messageBoxButtonYes = messageBox.button(QtWidgets.QMessageBox.Yes)
-        messageBoxButtonYes.setText("Ok, pomiń")
-        messageBoxButtonNo = messageBox.button(QtWidgets.QMessageBox.No)
-        messageBoxButtonNo.setText("Wróć")
-        messageBox.exec()
+    def skip_calibration(self):
+        message_box = QtWidgets.QMessageBox()
+        message_box.setIcon(QtWidgets.QMessageBox.Warning)
+        message_box.setWindowTitle("Uwaga !")
+        message_box.setText("Jeśli pominiesz ten krok, aplikacja może nie działać poprawnie!")
+        message_box.setStandardButtons(QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.No)
+        message_box_button_yes = message_box.button(QtWidgets.QMessageBox.Yes)
+        message_box_button_yes.setText("Ok, pomiń")
+        message_box_button_no = message_box.button(QtWidgets.QMessageBox.No)
+        message_box_button_no.setText("Wróć")
+        message_box.exec()
 
-        if messageBox.clickedButton() == messageBoxButtonYes:
-            self.openCVWorker.runThread = False
-            self.openCVWorkerThread.join()
-            del self.openCVWorkerThread
+        if message_box.clickedButton() == message_box_button_yes:
+            self.open_cv_worker.run_thread = False
+            self.open_cv_worker_thread.join()
+            del self.open_cv_worker_thread
             self.close()
-            self.controlgui.show()
-            self.controlgui.openSerialPort()
+            self.control_gui.show()
+            self.control_gui.openSerialPort()
 
-        elif messageBox.clickedButton() == messageBoxButtonNo:
+        elif message_box.clickedButton() == message_box_button_no:
             return
 
     # FUNKCJE
-    def disableConfigurationButtons(self):
-        self.ui.setBluePushButton.setDisabled(True)
-        self.ui.setYellowPushButton.setDisabled(True)
-        self.ui.setGreenPushButton.setDisabled(True)
-        self.ui.setRedPushButton.setDisabled(True)
+    def disable_configuration_buttons(self):
+        self.ui.set_blue_push_button.setDisabled(True)
+        self.ui.set_yellow_push_button.setDisabled(True)
+        self.ui.set_green_push_button.setDisabled(True)
+        self.ui.set_red_push_button.setDisabled(True)
 
-    def enableConfigurationButtons(self):
-        self.ui.setBluePushButton.setEnabled(True)
-        self.ui.setYellowPushButton.setEnabled(True)
-        self.ui.setGreenPushButton.setEnabled(True)
-        self.ui.setRedPushButton.setEnabled(True)
+    def enable_configuration_buttons(self):
+        self.ui.set_blue_push_button.setEnabled(True)
+        self.ui.set_yellow_push_button.setEnabled(True)
+        self.ui.set_green_push_button.setEnabled(True)
+        self.ui.set_red_push_button.setEnabled(True)
