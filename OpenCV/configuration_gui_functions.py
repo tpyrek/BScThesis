@@ -41,7 +41,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
         self.ui.ok_push_button.clicked.connect(self.open_control_window)
         self.ui.skip_calibration_push_button.clicked.connect(self.skip_calibration)
 
-        self.send_signal_to_set_color.connect(self.open_cv_worker.getColorFromFrame)
+        self.send_signal_to_set_color.connect(self.open_cv_worker.get_color_from_frame)
 
         self.open_cv_worker.send_text.connect(self.receive_text)
         self.open_cv_worker.send_frame.connect(self.receive_frame)
@@ -110,7 +110,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
         message_box.setIcon(QtWidgets.QMessageBox.Warning)
         message_box.setWindowTitle("Uwaga !")
         message_box.setText("Jeśli pominiesz ten krok, aplikacja może nie działać poprawnie!")
-        message_box.setStandardButtons(QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.No)
+        message_box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         message_box_button_yes = message_box.button(QtWidgets.QMessageBox.Yes)
         message_box_button_yes.setText("Ok, pomiń")
         message_box_button_no = message_box.button(QtWidgets.QMessageBox.No)
