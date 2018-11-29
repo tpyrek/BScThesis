@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 from control_gui import Ui_Dialog
-from autocontrol_gui_functions import AutoControlGUI
+from auto_control_gui_functions import AutoControlGUI
 from manualcontrol_gui_functions import ManualControlGUI
 import serial
 
