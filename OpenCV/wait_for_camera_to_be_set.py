@@ -2,13 +2,13 @@ from PyQt5 import QtCore
 from time import sleep
 
 
-class waitForCameraToBeSet(QtCore.QObject):
+class WaitForCameraToBeSet(QtCore.QObject):
 
-    sendCameraSet = QtCore.pyqtSignal()
+    send_camera_cet = QtCore.pyqtSignal()
 
-    def waitForCamera(self):
+    def wait_for_camera(self):
         # Poczekać aż ustawi sie kamera (jasność,ostrość)
 
         sleep(10)
-        self.sendCameraSet.emit()
+        self.send_camera_set.emit()
         return
