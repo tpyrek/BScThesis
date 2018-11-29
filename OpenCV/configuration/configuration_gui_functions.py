@@ -1,9 +1,10 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from configuration_gui import Ui_Dialog
-from instruction_gui_functions import InstructionGUI
-from control_gui_functions import ControlGUI
-from open_cv_worker_configuration_gui import OpenCVWorker
+from configuration.configuration_gui import Ui_Dialog
+from instruction.instruction_gui_functions import InstructionGUI
+from control.control_gui_functions import ControlGUI
+from open_cv_workers.open_cv_worker_configuration_gui import OpenCVWorker
 import threading
+
 
 class ConfigurationGUI(QtWidgets.QDialog):
 

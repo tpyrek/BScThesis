@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets
-from manual_control_gui import Ui_Dialog
-from send_data_to_servos_controller_manual_control_gui import SendDataToServosControllerManualControlGUI
+from manual_control.manual_control_gui import Ui_Dialog
+from send_data_to_servos.send_data_to_servos_controller_manual_control_gui \
+    import SendDataToServosControllerManualControlGUI
 import threading
 
 
