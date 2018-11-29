@@ -48,8 +48,8 @@ class OpenCVWorker(QtCore.QObject):
         self.camera_set = False
 
         #Połączenie sygnałów ze slotami
-        self.send_data_to_servos_controller.sendStatus.connect(self.get_figures)
-        self.camera_waiter.send_camera_cet.connect(self.receive_camera_set)
+        self.send_data_to_servos_controller.send_status.connect(self.get_figures)
+        self.camera_waiter.send_camera_set.connect(self.receive_camera_set)
 
     def get_red_color_from_ini_file(self):
 

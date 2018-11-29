@@ -27,7 +27,7 @@ class AutoControlGUI(QtWidgets.QDialog):
         self.ui.found_figures_list_widget.currentRowChanged.connect(self.open_cv_worker.receive_selected_figure_number)
 
         self.open_cv_worker.send_frame.connect(self.receive_frame)
-        self.open_cv_worker.send_figure_dext.connect(self.receive_figure_text)
+        self.open_cv_worker.send_figure_text.connect(self.receive_figure_text)
         self.open_cv_worker.send_figure_data.connect(self.receive_figure_data)
         self.open_cv_worker.send_figure_data_text_clear.connect(self.clear_figures_list_and_info)
 
@@ -36,8 +36,8 @@ class AutoControlGUI(QtWidgets.QDialog):
 
     def start_open_cv_worker(self):
         self.open_cv_worker.runThread = True
-        self.open_cv_worker.receiveSetup(0)
-        self.open_cv_worker_thread = threading.Thread(target=self.open_cv_worker.receiveGrabFrame)
+        self.open_cv_worker.receive_setup(0)
+        self.open_cv_worker_thread = threading.Thread(target=self.open_cv_worker.receive_grab_frame)
         # Daemon thread zostanie zabity automatycznie przy zamknięciu aplikacji
         self.open_cv_worker_thread.daemon = True
         self.open_cv_worker_thread.start()
