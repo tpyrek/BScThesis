@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 from control_gui import Ui_Dialog
 from auto_control_gui_functions import AutoControlGUI
-from manualcontrol_gui_functions import ManualControlGUI
+from manual_control_gui_functions import ManualControlGUI
 import serial
 
 
@@ -21,7 +21,7 @@ class ControlGUI(QtWidgets.QDialog):
         self.ui.manual_control_push_button.clicked.connect(self.open_manual_control_window)
 
     def __del__(self):
-        if not serial.is_open:
+        if not self.serial.is_open:
             self.serial.close()
 
     def open_serial_port(self):
