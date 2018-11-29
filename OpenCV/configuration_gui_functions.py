@@ -103,7 +103,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
         del self.open_cv_worker_thread
         self.close()
         self.control_gui.show()
-        self.control_gui.openSerialPort()
+        self.control_gui.open_serial_port()
 
     def skip_calibration(self):
         message_box = QtWidgets.QMessageBox()
@@ -123,7 +123,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
             del self.open_cv_worker_thread
             self.close()
             self.control_gui.show()
-            self.control_gui.openSerialPort()
+            self.control_gui.open_serial_port()
 
         elif message_box.clickedButton() == message_box_button_no:
             return
