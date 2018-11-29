@@ -1,10 +1,10 @@
 from PyQt5 import QtWidgets, QtGui
-from auto_control_gui import Ui_Dialog
-from open_cv_worker_auto_control_gui import OpenCVWorker
-from send_data_to_servos_controller_auto_control_gui import SendDataToServosControllerAutoControlGUI
+from auto_control.auto_control_gui import Ui_Dialog
+from open_cv_workers.open_cv_worker_auto_control_gui import OpenCVWorker
+from send_data_to_servos.send_data_to_servos_controller_auto_control_gui import SendDataToServosControllerAutoControlGUI
 import threading
 
-from fields_coordinates import field_coordinates_table
+from auto_control.fields_coordinates import field_coordinates_table
 
 
 class AutoControlGUI(QtWidgets.QDialog):

@@ -1,9 +1,9 @@
 from PyQt5 import QtCore, QtGui
 import cv2
 import numpy
-from figures_storage import FiguresStore
-from figures_process import figures_process
-from wait_for_camera_to_be_set import WaitForCameraToBeSet
+from figures.figures_storage import FiguresStore
+from figures.figures_process import figures_process
+from auto_control.wait_for_camera_to_be_set import WaitForCameraToBeSet
 from time import sleep
 import threading
 import configparser

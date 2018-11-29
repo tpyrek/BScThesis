@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from instruction_gui import Ui_Dialog
+from instruction.instruction_gui import Ui_Dialog
 
 
 class InstructionGUI(QtWidgets.QDialog):
