@@ -4,37 +4,38 @@ from auto_control_gui_functions import AutoControlGUI
 from manualcontrol_gui_functions import ManualControlGUI
 import serial
 
+
 class ControlGUI(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.autocontolgui = AutoControlGUI(self)
-        self.manualcontrolgui = ManualControlGUI(self)
+        self.auto_control_gui = AutoControlGUI(self)
+        self.manual_control_gui = ManualControlGUI(self)
         self.serial = serial.Serial()
         self.serial.baudrate = 9600
         self.serial.port = '/dev/ttyUSB0'
 
-        self.ui.autoControlPushButton.clicked.connect(self.openAutoControlWindow)
-        self.ui.manualControlPushButton.clicked.connect(self.openManualControlWindow)
+        self.ui.auto_control_push_button.clicked.connect(self.open_auto_control_window)
+        self.ui.manual_control_push_button.clicked.connect(self.open_manual_control_window)
 
     def __del__(self):
         if not serial.is_open:
             self.serial.close()
 
-    def openSerialPort(self):
+    def open_serial_port(self):
         try:
             self.serial.open()
         except serial.SerialException as e:
             print(e)
             pass
 
-    def openAutoControlWindow(self):
+    def open_auto_control_window(self):
         self.close()
-        self.autocontolgui.show()
-        self.autocontolgui.startOpenCVWorker()
+        self.auto_control_gui.show()
+        self.auto_control_gui.start_open_cv_worker()
 
-    def openManualControlWindow(self):
+    def open_manual_control_window(self):
         self.close()
-        self.manualcontrolgui.show()
+        self.manual_control_gui.show()
