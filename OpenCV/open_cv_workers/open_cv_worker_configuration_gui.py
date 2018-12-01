@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui
 import cv2
 import numpy
 import configparser
+import glob
 from time import sleep
 
 
@@ -34,9 +35,15 @@ class OpenCVWorker(QtCore.QObject):
         cv2.circle(self.frame_processed, tuple(center_point), 10, (0, 0, 0), -1)
 
     # camera_device_number - numer uchwytu używany przez VideoCapture
-    def receive_setup(self, camera_device_number: int):
+    #def receive_setup(self, camera_device_number: int):
         # Start pobierania ramek
-        self.capture.open(camera_device_number)
+     #   self.capture.open(camera_device_number)
+
+    def find_video_index_and_open_capture(self):
+        available_video = glob.glob('/dev/video*')
+        if len(available_video):
+            video_index = int(available_video[0][-1])
+            self.capture.open(video_index)
 
     def end_grabbing(self):
         if self.capture.isOpened():
