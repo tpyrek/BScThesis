@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui
 import cv2
 import numpy
+import glob
 from figures.figures_storage import FiguresStore
 from figures.figures_process import figures_process
 from auto_control.wait_for_camera_to_be_set import WaitForCameraToBeSet
@@ -135,9 +136,11 @@ class OpenCVWorker(QtCore.QObject):
                                tuple(self.figure_store.figures[self.selected_figure_number].coordinates)
                                , 4, (0, 0, 0), -1)
 
-    # camera_device_number - numer uchwytu kamery
-    def receive_setup(self, camera_device_number: int):
-        self.capture.open(camera_device_number)
+    def find_video_index_and_open_capture(self):
+        available_video = glob.glob('/dev/video*')
+        if len(available_video):
+            video_index = int(available_video[0][-1])
+            self.capture.open(video_index)
 
     def receive_high_light_enable(self):
         self.highlight_figure = not self.highlight_figure

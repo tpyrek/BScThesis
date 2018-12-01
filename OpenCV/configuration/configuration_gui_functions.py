@@ -46,7 +46,7 @@ class ConfigurationGUI(QtWidgets.QDialog):
 
         self.open_cv_worker.send_text.connect(self.receive_text)
         self.open_cv_worker.send_frame.connect(self.receive_frame)
-        self.open_cv_worker.receive_setup(0)
+        self.open_cv_worker.find_video_index_and_open_capture()
         self.open_cv_worker_thread.start()
 
     # SLOTY

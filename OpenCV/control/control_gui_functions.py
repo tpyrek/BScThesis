@@ -3,6 +3,7 @@ from control.control_gui import Ui_Dialog
 from auto_control.auto_control_gui_functions import AutoControlGUI
 from manual_control.manual_control_gui_functions import ManualControlGUI
 import serial
+import glob
 
 
 class ControlGUI(QtWidgets.QDialog):
@@ -25,11 +26,17 @@ class ControlGUI(QtWidgets.QDialog):
             self.serial.close()
 
     def open_serial_port(self):
+        self.find_serial_port()
         try:
             self.serial.open()
         except serial.SerialException as e:
             print(e)
             pass
+
+    def find_serial_port(self):
+        ports = glob.glob('/dev/ttyUSB*')
+        if len(ports):
+            self.serial.port = ports[0]
 
     def open_auto_control_window(self):
         self.close()
