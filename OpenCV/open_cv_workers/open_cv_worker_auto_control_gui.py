@@ -211,6 +211,22 @@ class OpenCVWorker(QtCore.QObject):
         for fi in self.figure_store.figures:
             self.send_figure_text.emit("Figura : " + str(fi.figure_number) + ", Kolor : " + str(fi.color))
 
+    def limit_field_to_search_figures(self, top_margin, bottom_margin, left_margin, right_margin):
+        temp_image = numpy.zeros((480, 640, 3), dtype="uint8")
+
+        # ze względu na indeksowanie od zera
+        top_margin -= 1
+        bottom_margin -= 1
+        left_margin -= 1
+        right_margin -= 1
+
+        for i in range(480):
+            for j in range(640):
+                if (479-bottom_margin) > i > top_margin and (639-right_margin) > j > left_margin:
+                    temp_image[i][j] = self.frame_original[i][j]
+
+        return temp_image
+
     def receive_camera_set(self):
         self.camera_set = True
         self.get_figures()
