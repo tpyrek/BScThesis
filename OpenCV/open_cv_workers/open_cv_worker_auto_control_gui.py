@@ -211,7 +211,7 @@ class OpenCVWorker(QtCore.QObject):
         for fi in self.figure_store.figures:
             self.send_figure_text.emit("Figura : " + str(fi.figure_number) + ", Kolor : " + str(fi.color))
 
-    def limit_field_to_search_figures(self, top_margin, bottom_margin, left_margin, right_margin):
+    def limit_field_to_search_figures(self, frame_original, top_margin, bottom_margin, left_margin, right_margin):
         temp_image = numpy.zeros((480, 640, 3), dtype="uint8")
 
         # ze względu na indeksowanie od zera
@@ -223,9 +223,31 @@ class OpenCVWorker(QtCore.QObject):
         for i in range(480):
             for j in range(640):
                 if (479-bottom_margin) > i > top_margin and (639-right_margin) > j > left_margin:
-                    temp_image[i][j] = self.frame_original[i][j]
+                    temp_image[i][j] = frame_original[i][j]
 
         return temp_image
+
+    def highlight_limited_field_to_search_figures(self, frame_original,
+                                                  top_margin, bottom_margin, left_margin, rigth_margin):
+        overlay = frame_original.copy()
+        output = frame_original.copy()
+
+        height, width = frame_original.shape[:2]
+        mask = numpy.zeros((height + 2, width + 2), numpy.uint8)
+
+        cv2.rectangle(overlay, (135, 70), (495, 425), (0, 0, 0), 2)
+        gray = cv2.cvtColor(overlay, cv2.COLOR_BGR2GRAY)
+        ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY)
+        cv2.floodFill(thresh, mask, (int(height / 2), int(width / 2)), (0, 0, 0))
+
+        thresh = cv2.cvtColor(thresh, cv2.COLOR_GRAY2BGR)
+
+        # overlay = cv2.cvtColor(thresh, cv2.COLOR_GRAY2BGR)
+        overlay[numpy.where(thresh == [255, 255, 255])[:2]] = [30, 30, 30]
+        overlay[numpy.where(thresh == [0, 0, 0])[:2]] = frame_original[numpy.where(thresh == [0, 0, 0])[:2]]
+        cv2.addWeighted(overlay, 0.6, output, 1 - 0.6, 0, output)
+
+        return output
 
     def receive_camera_set(self):
         self.camera_set = True
