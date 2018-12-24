@@ -5,9 +5,11 @@ import glob
 from figures.figures_storage import FiguresStore
 from figures.figures_process import figures_process
 from auto_control.wait_for_camera_to_be_set import WaitForCameraToBeSet
+from frame_getter_worker.frame_getter_worker import FrameGetterWorker
 from time import sleep
 import threading
 import configparser
+from queue import Queue
 
 
 class OpenCVWorker(QtCore.QObject):
@@ -34,6 +36,8 @@ class OpenCVWorker(QtCore.QObject):
         self.highlight_figure = False
         self.red_lower_bottom, self.red_upper_bottom, self.red_lower_top, self.red_upper_top =\
             self.get_red_color_from_ini_file()
+
+        self.frames_queue = Queue(10)
 
         # Po wykonaniu akcji przez servosController zostaje wyemitowany sygnał do odświeżenia figur znajdujacych
         # sie na polu
@@ -123,7 +127,7 @@ class OpenCVWorker(QtCore.QObject):
     # Funkcja odpowiedzialna za podkreślanie figur na obrazie i zaznaczanie czerwonego znacznika
     def process_image(self):
 
-        self.highlight_limited_field_to_search_figures(50, 30, 100, 110)
+        #self.highlight_limited_field_to_search_figures(50, 30, 100, 110)
 
         if self.camera_set:
             self.robot_arm_pointer()
@@ -162,6 +166,9 @@ class OpenCVWorker(QtCore.QObject):
         while not self.capture.isOpened():
             pass
 
+        frame_getter_worker = FrameGetterWorker(self.frames_queue, self.capture)
+        frame_getter_worker.start()
+
         # Wątek który w tle odczeka pewną ilość czasu aby kamera zdazyła dostosować się do jassnosci otoczenia
         # i wyemituje sygnał
         camera_set_thread = threading.Thread(target=self.camera_waiter.wait_for_camera)
@@ -171,9 +178,10 @@ class OpenCVWorker(QtCore.QObject):
 
         while self.run_thread:
 
-            grabbed, self.frame_original = self.capture.read()
-
-            if grabbed:
+            #grabbed, self.frame_original = self.capture.read()
+            if not self.frames_queue.empty():
+                self.frame_original = self.frames_queue.get()
+                self.frames_queue.task_done()
 
                 width = int(self.capture.get(3))  # float
                 height = int(self.capture.get(4))  # float
@@ -189,7 +197,9 @@ class OpenCVWorker(QtCore.QObject):
                 self.send_frame.emit(q_image)
 
                 #sleep(0.001)
-
+        frame_getter_worker.run_thread = False
+        frame_getter_worker.join()
+        camera_set_thread.join()
         self.end_grabbing()
         self.clear_variables()
         self.camera_set = False
