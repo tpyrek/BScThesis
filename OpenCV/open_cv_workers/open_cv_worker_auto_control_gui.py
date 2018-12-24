@@ -236,7 +236,8 @@ class OpenCVWorker(QtCore.QObject):
 
         temp = self.frame_processed.copy()
 
-        cv2.rectangle(self.frame_processed, (left_margin, top_margin), (639-right_margin, 479-bottom_margin), (0, 0, 0), 2)
+        cv2.rectangle(self.frame_processed, (left_margin, top_margin), (639-right_margin, 479-bottom_margin),
+                      (0, 0, 0), 2)
         gray = cv2.cvtColor(self.frame_processed, cv2.COLOR_RGB2GRAY)
         ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY)
         cv2.floodFill(thresh, mask, (int(height / 2), int(width / 2)), (0, 0, 0))
@@ -245,7 +246,7 @@ class OpenCVWorker(QtCore.QObject):
 
         self.frame_processed[numpy.where(thresh == [255, 255, 255])[:2]] = [30, 30, 30]
         self.frame_processed[numpy.where(thresh == [0, 0, 0])[:2]] = temp[numpy.where(thresh == [0, 0, 0])[:2]]
-        cv2.addWeighted(self.frame_processed, 0.6, temp, 1 - 0.6, 0, self.frame_processed)
+        cv2.addWeighted(self.frame_processed, 0.7, temp, 1 - 0.7, 0, self.frame_processed)
 
     def receive_camera_set(self):
         self.camera_set = True
