@@ -123,7 +123,7 @@ class OpenCVWorker(QtCore.QObject):
     # Funkcja odpowiedzialna za podkreślanie figur na obrazie i zaznaczanie czerwonego znacznika
     def process_image(self):
 
-        self.highlight_limited_field_to_search_figures(50, 30, 100, 110)
+        # self.highlight_limited_field_to_search_figures(50, 30, 100, 110)
 
         if self.camera_set:
             self.robot_arm_pointer()
