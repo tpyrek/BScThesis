@@ -30,6 +30,16 @@ class SendDataToServosControllerAutoControlGUI(QtCore.QObject):
         received_message = serial.readline()
         self.send_commands_text.emit("Robot : " + str(received_message))
 
+        # Ustawienie robota w pozycji neutralnej' aby nie potrącic innych figur
+        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, 500, 500, 500, 500, 500, servo6_value,
+                                      1, 3, 4, 2, 5, 6)
+
+        serial.write(message_to_send)
+        self.send_commands_text.emit("Rpi   : " + str(message_to_send))
+
+        received_message = serial.readline()
+        self.send_commands_text.emit("Robot : " + str(received_message))
+
         # Przeniesienie klocka w wyznaczone miejsce
         message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, 847, 73, 273, 340, 70, 750, 1, 3, 4, 2, 5, 6)
 
