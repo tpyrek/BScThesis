@@ -1,8 +1,8 @@
 import numpy
 
 
-field_coordinates_table = {"field_1": numpy.array([1, 1, 1, 1, 1, 1], dtype=numpy.uint16),
-                           "field_2": numpy.array([2, 2, 2, 2, 2, 2], dtype=numpy.uint16),
-                           "field_3": numpy.array([3, 3, 3, 3, 3, 3], dtype=numpy.uint16),
-                           "field_4": numpy.array([4, 4, 4, 4, 4, 4], dtype=numpy.uint16)}
+field_coordinates_table = {"field_1": numpy.array([821, 551, 343, 296, 70, 281], dtype=numpy.uint16),
+                           "field_2": numpy.array([821, 431, 343, 296, 70, 281], dtype=numpy.uint16),
+                           "field_3": numpy.array([655, 592, 260, 125, 70, 281], dtype=numpy.uint16),
+                           "field_4": numpy.array([655, 592, 260, 125, 70, 281], dtype=numpy.uint16)}
 

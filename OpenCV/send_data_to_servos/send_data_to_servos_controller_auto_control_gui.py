@@ -31,9 +31,8 @@ class SendDataToServosControllerAutoControlGUI(QtCore.QObject):
         self.send_commands_text.emit("Robot : " + str(received_message))
 
         # Przeniesienie klocka w wyznaczone miejsce
-        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, servo1_value, servo2_value, servo3_value,
-                                      servo4_value, servo5_value, servo6_value, first_servo, second_servo, third_servo,
-                                      fourth_servo, fifth_servo, sixth_servo)
+        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, 847, 73, 273, 340, 70, 750,
+                                      first_servo, second_servo, third_servo, fourth_servo, fifth_servo, sixth_servo)
 
         serial.write(message_to_send)
         self.send_commands_text.emit("Rpi   : " + str(message_to_send))
@@ -42,9 +41,8 @@ class SendDataToServosControllerAutoControlGUI(QtCore.QObject):
         self.send_commands_text.emit("Robot : " + str(received_message))
 
         # Ustawienie robota w pozycji neutralnej
-        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, servo1_value, servo2_value, servo3_value,
-                                      servo4_value, servo5_value, servo6_value, first_servo, second_servo, third_servo,
-                                      fourth_servo, fifth_servo, sixth_servo)
+        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, 500, 500, 500, 500, 500, 750,
+                                      first_servo, second_servo, third_servo, fourth_servo, fifth_servo, sixth_servo)
 
         serial.write(message_to_send)
         self.send_commands_text.emit("Rpi   : " + str(message_to_send))
