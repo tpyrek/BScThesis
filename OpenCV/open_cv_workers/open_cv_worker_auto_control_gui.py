@@ -259,9 +259,7 @@ class OpenCVWorker(QtCore.QObject):
             return "field_1"
         elif figure_x_coordinate >= 320 and figure_y_coordinate < 240:
             return "field_2"
-        elif figure_x_coordinate < 320 and figure_y_coordinate >= 240:
-            return "field_3"
         elif figure_x_coordinate >= 320 and figure_y_coordinate >= 240:
+            return "field_3"
+        elif figure_x_coordinate < 320 and figure_y_coordinate >= 240:
             return "field_4"
-
-
