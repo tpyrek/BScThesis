@@ -2,6 +2,8 @@ from PyQt5 import QtWidgets
 from manual_control.manual_control_gui import Ui_Dialog
 from send_data_to_servos.send_data_to_servos_controller_manual_control_gui \
     import SendDataToServosControllerManualControlGUI
+from send_data_to_servos.send_data_to_servos_controller_at_app_closing \
+    import SendDataToServosControllerAtAppClosing
 import threading
 
 
@@ -33,6 +35,14 @@ class ManualControlGUI(QtWidgets.QDialog):
 
         self.send_data_to_servos_controller.send_status.connect(self.enable_all_widgets)
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
+
+    def closeEvent(self, event):
+        print('closed')
+        send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
+        thread = threading.Thread(target=self.send_data_to_servos_controller_at_app_closing.send_data,
+                                  args=self.control_gui.serial)
+        thread.start()
+        event.accept()
 
     def initialize(self):
         self.ui.servo1_horizontal_slider.setMaximum(1000)
