@@ -21,9 +21,9 @@ class ControlGUI(QtWidgets.QDialog):
         self.ui.auto_control_push_button.clicked.connect(self.open_auto_control_window)
         self.ui.manual_control_push_button.clicked.connect(self.open_manual_control_window)
 
-    def __del__(self):
-        if not self.serial.is_open:
-            self.serial.close()
+    #def __del__(self):
+     #   if not self.serial.is_open:
+      #      self.serial.close()
 
     def open_serial_port(self):
         self.find_serial_port()
