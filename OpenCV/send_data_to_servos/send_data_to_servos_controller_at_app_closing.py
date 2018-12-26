@@ -17,3 +17,6 @@ class SendDataToServosControllerAtAppClosing(QtCore.QObject):
         serial.write(message_to_send)
 
         serial.readline()
+
+        if serial.is_open:
+            serial.close()
