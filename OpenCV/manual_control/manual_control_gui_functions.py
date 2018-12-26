@@ -39,7 +39,7 @@ class ManualControlGUI(QtWidgets.QDialog):
     def closeEvent(self, event):
         print('closed')
         send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
-        thread = threading.Thread(target=self.send_data_to_servos_controller_at_app_closing.send_data,
+        thread = threading.Thread(target=send_data_to_servos_controller_at_app_closing.send_data,
                                   args=self.control_gui.serial)
         thread.start()
         event.accept()
