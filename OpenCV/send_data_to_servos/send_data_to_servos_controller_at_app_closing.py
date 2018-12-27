@@ -7,6 +7,7 @@ class SendDataToServosControllerAtAppClosing(QtCore.QObject):
 
     def send_data(self, serial):
 
+        print('ok')
         if not serial.is_open:
             self.send_commands_text.emit("Serial port jest zamknięty")
             self.send_status.emit()
@@ -18,5 +19,3 @@ class SendDataToServosControllerAtAppClosing(QtCore.QObject):
 
         serial.readline()
 
-        if serial.is_open:
-            serial.close()

@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from auto_control.auto_control_gui import Ui_Dialog
 from open_cv_workers.open_cv_worker_auto_control_gui import OpenCVWorker
 from send_data_to_servos.send_data_to_servos_controller_auto_control_gui import SendDataToServosControllerAutoControlGUI
+from send_data_to_servos.send_data_to_servos_controller_at_app_closing import SendDataToServosControllerAtAppClosing
 import threading
 
 from auto_control.fields_coordinates import field_coordinates_table
@@ -33,6 +34,19 @@ class AutoControlGUI(QtWidgets.QDialog):
 
         self.send_data_to_servos_controller.send_status.connect(self.enable_all_widgets)
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
+
+    def closeEvent(self, event):
+        message_box = QtWidgets.QMessageBox()
+        message_box.setIcon(QtWidgets.QMessageBox.Information)
+        message_box.setWindowTitle("Informacja")
+        message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku')
+        message_box.exec()
+        self.close()
+
+        send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
+        send_data_to_servos_controller_at_app_closing.send_data(self.control_gui.serial)
+
+        event.accept()
 
     def start_open_cv_worker(self):
         self.open_cv_worker.run_thread = True

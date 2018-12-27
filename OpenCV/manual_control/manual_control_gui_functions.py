@@ -2,8 +2,7 @@ from PyQt5 import QtWidgets
 from manual_control.manual_control_gui import Ui_Dialog
 from send_data_to_servos.send_data_to_servos_controller_manual_control_gui \
     import SendDataToServosControllerManualControlGUI
-from send_data_to_servos.send_data_to_servos_controller_at_app_closing \
-    import SendDataToServosControllerAtAppClosing
+from send_data_to_servos.send_data_to_servos_controller_at_app_closing import SendDataToServosControllerAtAppClosing
 import threading
 
 
@@ -37,11 +36,16 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
 
     def closeEvent(self, event):
-        print('closed')
+        message_box = QtWidgets.QMessageBox()
+        message_box.setIcon(QtWidgets.QMessageBox.Information)
+        message_box.setWindowTitle("Informacja")
+        message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku')
+        message_box.exec()
+        self.close()
+
         send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
-        thread = threading.Thread(target=send_data_to_servos_controller_at_app_closing.send_data,
-                                  args=self.control_gui.serial)
-        thread.start()
+        send_data_to_servos_controller_at_app_closing.send_data(self.control_gui.serial)
+
         event.accept()
 
     def initialize(self):
