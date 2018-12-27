@@ -50,7 +50,7 @@ void setup() {
   servoObjectsTable[4].attach(SERVO5_PIN);
   servoObjectsTable[5].attach(SERVO6_PIN);
 
-  // Init servos at the beggining - set all servos on 50 degrees
+  // Init servos at the beggining
   servosSetter.initServos();
 
 }
