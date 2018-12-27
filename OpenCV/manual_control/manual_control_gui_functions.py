@@ -286,9 +286,9 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(500)
         data_tab.append(500)
         data_tab.append(1)
-        data_tab.append(2)
         data_tab.append(3)
         data_tab.append(4)
+        data_tab.append(2)
         data_tab.append(5)
         data_tab.append(6)
 
