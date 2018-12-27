@@ -4,23 +4,25 @@ ServoSetup::ServoSetup(Servo servoObj[], StoreReceivedData *storageObj)
 {
   servoObjectsTable = servoObj;
   dataStorage = storageObj;
+
+  int initValues[6] = {76, 21, 12, 14, 11, 37};
   
   // Init servosDataTable
   for(int i = 0; i < 6; i++)
   {
-    servosDataTable[i].servoLastPosition = 50;
+    servosDataTable[i].servoLastPosition = initValues[i];
   }
 }
 
 void ServoSetup::initServos()
 {
   //Initial values
-  servoObjectsTable[0].write(50);
-  servoObjectsTable[1].write(50);
-  servoObjectsTable[2].write(50);
-  servoObjectsTable[3].write(50);
-  servoObjectsTable[4].write(50);
-  servoObjectsTable[5].write(50);
+  servoObjectsTable[0].write(76);
+  servoObjectsTable[1].write(21);
+  servoObjectsTable[2].write(12);
+  servoObjectsTable[3].write(14);
+  servoObjectsTable[4].write(11);
+  servoObjectsTable[5].write(37);
 }
 
 void ServoSetup::setServos()
