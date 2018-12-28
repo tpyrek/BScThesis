@@ -35,7 +35,7 @@ class AutoControlGUI(QtWidgets.QDialog):
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
 
     def start_open_cv_worker(self):
-        self.open_cv_worker.runThread = True
+        self.open_cv_worker.run_thread = True
         self.open_cv_worker.find_video_index_and_open_capture()
         self.open_cv_worker_thread = threading.Thread(target=self.open_cv_worker.receive_grab_frame)
         # Daemon thread zostanie zabity automatycznie przy zamknięciu aplikacji
