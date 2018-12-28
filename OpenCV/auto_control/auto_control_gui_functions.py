@@ -74,8 +74,8 @@ class AutoControlGUI(QtWidgets.QDialog):
         self.open_cv_worker.run_thread = False
         self.open_cv_worker_thread.join()
         del self.open_cv_worker_thread
-        self.control_gui.show()
         self.close()
+        self.control_gui.show()
 
     def execute_command(self):
 

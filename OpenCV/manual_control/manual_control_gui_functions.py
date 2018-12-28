@@ -90,8 +90,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.ui.commands_list_widget.addItem(text)
 
     def return_to_control_gui(self):
-        self.control_gui.show()
         self.close()
+        self.control_gui.show()
 
     def servo1_slider_value_changed(self):
         self.ui.servo1_location_label.setText(
