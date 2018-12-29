@@ -41,8 +41,8 @@ class AutoControlGUI(QtWidgets.QDialog):
         if not self.robot_arm_ready:
             message_box = QtWidgets.QMessageBox()
             message_box.setIcon(QtWidgets.QMessageBox.Warning)
-            message_box.setWindowTitle("Uwaga")
-            message_box.setText('Robot nie zakończył pracy. Operacja możliwa dopiero po jej ukończeniu')
+            message_box.setWindowTitle("Uwaga!")
+            message_box.setText('Robot nie zakończył pracy. Operacja możliwa dopiero po jej ukończeniu.')
             message_box.exec()
 
             event.ignore()
@@ -52,7 +52,7 @@ class AutoControlGUI(QtWidgets.QDialog):
             message_box = QtWidgets.QMessageBox()
             message_box.setIcon(QtWidgets.QMessageBox.Information)
             message_box.setWindowTitle("Informacja")
-            message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku')
+            message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku.')
             message_box.exec()
 
             send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
@@ -130,7 +130,6 @@ class AutoControlGUI(QtWidgets.QDialog):
 
         else:
             self.ui.commands_list_widget.addItem("Nie ma figur do przeniesienia bądź dozwolonych operacji")
-
 
     def enable_all_widgets(self):
         self.ui.execute_command_push_button.setEnabled(True)
