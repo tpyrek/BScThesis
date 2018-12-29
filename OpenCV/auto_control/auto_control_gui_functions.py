@@ -14,6 +14,7 @@ class AutoControlGUI(QtWidgets.QDialog):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.robot_arm_ready = True
         self.control_gui = control_gui
         self.send_data_to_servos_controller = SendDataToServosControllerAutoControlGUI()
 
@@ -36,6 +37,10 @@ class AutoControlGUI(QtWidgets.QDialog):
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
 
     def closeEvent(self, event):
+
+        while not self.robot_arm_ready:
+            pass
+
         message_box = QtWidgets.QMessageBox()
         message_box.setIcon(QtWidgets.QMessageBox.Information)
         message_box.setWindowTitle("Informacja")
@@ -116,10 +121,12 @@ class AutoControlGUI(QtWidgets.QDialog):
     def enable_all_widgets(self):
         self.ui.execute_command_push_button.setEnabled(True)
         self.ui.return_push_button.setEnabled(True)
+        self.robot_arm_ready = True
 
     def disable_all_widgets(self):
         self.ui.execute_command_push_button.setEnabled(False)
         self.ui.return_push_button.setEnabled(False)
+        self.robot_arm_ready = False
 
     def clear_figures_list_and_info(self):
         self.ui.found_figures_list_widget.clear()
