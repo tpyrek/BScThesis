@@ -17,8 +17,8 @@ enum{
 
 //Maximum and minimum servo position(in degrees)
 enum{
-  MIN_SERVO_POSITION = 10,
-  MAX_SERVO_POSITION = 170
+  MIN_SERVO_POSITION = 0,
+  MAX_SERVO_POSITION = 180
 };
 
 // The table of the Servo class objects 
