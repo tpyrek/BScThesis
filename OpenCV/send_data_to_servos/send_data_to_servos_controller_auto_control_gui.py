@@ -1,6 +1,5 @@
 from PyQt5 import QtCore
 import struct
-from time import sleep
 
 
 # Do automatycznej kontroli ramienia
@@ -15,8 +14,7 @@ class SendDataToServosControllerAutoControlGUI(QtCore.QObject):
                   sixth_servo):
 
         if not serial.is_open:
-            self.send_commands_text.emit("Serial port jest zamknięty")
-            sleep(4)
+            self.send_commands_text.emit("Port szeregowy jest zamknięty")
             self.send_status.emit()
             return
 

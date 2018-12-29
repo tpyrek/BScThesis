@@ -124,6 +124,12 @@ class AutoControlGUI(QtWidgets.QDialog):
                                                 data_tab[13], data_tab[14]))
                 thread.start()
 
+            else:
+                self.ui.commands_list_widget.addItem("Trzeba zaznaczyć zarówno figurę jak i jedną z dozwolonych operacji")
+
+        else:
+            self.ui.commands_list_widget.addItem("Nie ma figur do przeniesienia bądź dozwolonych operacji")
+
 
     def enable_all_widgets(self):
         self.ui.execute_command_push_button.setEnabled(True)
@@ -137,4 +143,5 @@ class AutoControlGUI(QtWidgets.QDialog):
 
     def clear_figures_list_and_info(self):
         self.ui.found_figures_list_widget.clear()
+        self.ui.open_cv_label.clear()
         self.ui.figure_data_text_edit.setText("Numer : \nKolor : \nŚrodek : \nKąt : ")
