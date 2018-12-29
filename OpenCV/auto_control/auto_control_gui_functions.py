@@ -38,20 +38,27 @@ class AutoControlGUI(QtWidgets.QDialog):
 
     def closeEvent(self, event):
 
-        while not self.robot_arm_ready:
-            pass
+        if not self.robot_arm_ready:
+            message_box = QtWidgets.QMessageBox()
+            message_box.setIcon(QtWidgets.QMessageBox.Warning)
+            message_box.setWindowTitle("Uwaga")
+            message_box.setText('Robot nie zakończył pracy. Operacja możliwa dopiero po jej ukończeniu')
+            message_box.exec()
 
-        message_box = QtWidgets.QMessageBox()
-        message_box.setIcon(QtWidgets.QMessageBox.Information)
-        message_box.setWindowTitle("Informacja")
-        message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku')
-        message_box.exec()
-        self.close()
+            return
 
-        send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
-        send_data_to_servos_controller_at_app_closing.send_data(self.control_gui.serial)
+        else:
 
-        event.accept()
+            message_box = QtWidgets.QMessageBox()
+            message_box.setIcon(QtWidgets.QMessageBox.Information)
+            message_box.setWindowTitle("Informacja")
+            message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku')
+            message_box.exec()
+
+            send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
+            send_data_to_servos_controller_at_app_closing.send_data(self.control_gui.serial)
+
+            event.accept()
 
     def start_open_cv_worker(self):
         self.open_cv_worker.run_thread = True
