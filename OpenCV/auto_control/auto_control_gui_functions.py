@@ -61,6 +61,7 @@ class AutoControlGUI(QtWidgets.QDialog):
             event.accept()
 
     def start_open_cv_worker(self):
+        self.ui.open_cv_label.clear()
         self.open_cv_worker.run_thread = True
         self.open_cv_worker.find_video_index_and_open_capture()
         self.open_cv_worker_thread = threading.Thread(target=self.open_cv_worker.receive_grab_frame)
@@ -143,5 +144,4 @@ class AutoControlGUI(QtWidgets.QDialog):
 
     def clear_figures_list_and_info(self):
         self.ui.found_figures_list_widget.clear()
-        self.ui.open_cv_label.clear()
         self.ui.figure_data_text_edit.setText("Numer : \nKolor : \nŚrodek : \nKąt : ")
