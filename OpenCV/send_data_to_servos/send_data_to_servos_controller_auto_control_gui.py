@@ -39,7 +39,7 @@ class SendDataToServosControllerAutoControlGUI(QtCore.QObject):
         self.send_commands_text.emit("Robot : " + str(received_message))
 
         # Ustawienie robota w pozycji neutralnej' aby nie potrącic innych figur
-        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, 500, 500, 500, 500,
+        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', min, max, speed, 500, servo2_value, 500, 500,
                                       servo5_value, servo6_value, 1, 3, 4, 2, 5, 6)
 
         serial.write(message_to_send)
