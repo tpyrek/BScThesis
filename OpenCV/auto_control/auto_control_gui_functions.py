@@ -45,9 +45,9 @@ class AutoControlGUI(QtWidgets.QDialog):
             message_box.setText('Robot nie zakończył pracy. Operacja możliwa dopiero po jej ukończeniu')
             message_box.exec()
 
-            return
+            event.ignore()
 
-        else:
+        elif self.robot_arm_ready:
 
             message_box = QtWidgets.QMessageBox()
             message_box.setIcon(QtWidgets.QMessageBox.Information)
