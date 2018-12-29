@@ -121,8 +121,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -153,8 +153,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -185,8 +185,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -217,8 +217,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -249,8 +249,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -281,8 +281,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -357,3 +357,11 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.ui.return_push_button.setEnabled(False)
 
         self.robot_arm_ready = False
+
+    def check_servo_value(self, value):
+        if value < 70:
+            return 70
+        elif value > 930:
+            return 930
+        else:
+            return value
