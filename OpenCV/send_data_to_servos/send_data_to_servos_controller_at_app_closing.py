@@ -10,7 +10,7 @@ class SendDataToServosControllerAtAppClosing(QtCore.QObject):
         if not serial.is_open:
             return
 
-        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', 0, 1000, 30, 473, 132, 73, 86, 70, 230, 5, 6, 2, 4, 3, 1)
+        message_to_send = struct.pack('<iiiiiiiiiBBBBBB', 0, 1000, 30, 422, 117, 67, 78, 61, 205, 5, 6, 2, 4, 3, 1)
         serial.write(message_to_send)
         serial.readline()
 
