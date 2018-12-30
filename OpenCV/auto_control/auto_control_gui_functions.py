@@ -106,7 +106,7 @@ class AutoControlGUI(QtWidgets.QDialog):
                 data_tab = list()
                 data_tab.append(0)  # Max value
                 data_tab.append(1000)  # Min value
-                data_tab.append(60)  # Speed
+                data_tab.append(30)  # Speed
 
                 for value in field_coordinates_table[figure_field]:
                     data_tab.append(value)
