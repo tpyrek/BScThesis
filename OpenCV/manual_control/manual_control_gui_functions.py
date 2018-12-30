@@ -117,10 +117,10 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo1_horizontal_slider.minimum())
         data_tab.append(self.ui.servo1_horizontal_slider.maximum())
         data_tab.append(self.ui.speed_spin_box.value())
-        data_tab.append(self.ui.servo1_horizontal_slider.value())
-        data_tab.append(self.ui.servo2_horizontal_slider.value())
-        data_tab.append(self.ui.servo3_horizontal_slider.value())
-        data_tab.append(self.ui.servo4_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo1_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo2_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo3_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo4_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
@@ -149,10 +149,10 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo1_horizontal_slider.minimum())
         data_tab.append(self.ui.servo1_horizontal_slider.maximum())
         data_tab.append(self.ui.speed_spin_box.value())
-        data_tab.append(self.ui.servo1_horizontal_slider.value())
-        data_tab.append(self.ui.servo2_horizontal_slider.value())
-        data_tab.append(self.ui.servo3_horizontal_slider.value())
-        data_tab.append(self.ui.servo4_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo1_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo2_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo3_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo4_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
@@ -181,10 +181,10 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo1_horizontal_slider.minimum())
         data_tab.append(self.ui.servo1_horizontal_slider.maximum())
         data_tab.append(self.ui.speed_spin_box.value())
-        data_tab.append(self.ui.servo1_horizontal_slider.value())
-        data_tab.append(self.ui.servo2_horizontal_slider.value())
-        data_tab.append(self.ui.servo3_horizontal_slider.value())
-        data_tab.append(self.ui.servo4_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo1_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo2_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo3_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo4_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
@@ -213,10 +213,10 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo1_horizontal_slider.minimum())
         data_tab.append(self.ui.servo1_horizontal_slider.maximum())
         data_tab.append(self.ui.speed_spin_box.value())
-        data_tab.append(self.ui.servo1_horizontal_slider.value())
-        data_tab.append(self.ui.servo2_horizontal_slider.value())
-        data_tab.append(self.ui.servo3_horizontal_slider.value())
-        data_tab.append(self.ui.servo4_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo1_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo2_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo3_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo4_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
@@ -245,10 +245,10 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo1_horizontal_slider.minimum())
         data_tab.append(self.ui.servo1_horizontal_slider.maximum())
         data_tab.append(self.ui.speed_spin_box.value())
-        data_tab.append(self.ui.servo1_horizontal_slider.value())
-        data_tab.append(self.ui.servo2_horizontal_slider.value())
-        data_tab.append(self.ui.servo3_horizontal_slider.value())
-        data_tab.append(self.ui.servo4_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo1_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo2_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo3_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo4_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
@@ -277,10 +277,10 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo1_horizontal_slider.minimum())
         data_tab.append(self.ui.servo1_horizontal_slider.maximum())
         data_tab.append(self.ui.speed_spin_box.value())
-        data_tab.append(self.ui.servo1_horizontal_slider.value())
-        data_tab.append(self.ui.servo2_horizontal_slider.value())
-        data_tab.append(self.ui.servo3_horizontal_slider.value())
-        data_tab.append(self.ui.servo4_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo1_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo2_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo3_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo4_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
         data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
@@ -359,9 +359,9 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.robot_arm_ready = False
 
     def check_servo_value(self, value):
-        if value < 70:
-            return 70
-        elif value > 930:
-            return 930
+        if value < 40:
+            return 40
+        elif value > 960:
+            return 960
         else:
             return value
