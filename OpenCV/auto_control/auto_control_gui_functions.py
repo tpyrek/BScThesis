@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from auto_control.auto_control_gui import Ui_Dialog
 from open_cv_workers.open_cv_worker_auto_control_gui import OpenCVWorker
 from send_data_to_servos.send_data_to_servos_controller_auto_control_gui import SendDataToServosControllerAutoControlGUI
+from send_data_to_servos.send_data_to_servos_controller_at_app_closing import SendDataToServosControllerAtAppClosing
 import threading
 
 from auto_control.fields_coordinates import field_coordinates_table
@@ -13,6 +14,7 @@ class AutoControlGUI(QtWidgets.QDialog):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.robot_arm_ready = True
         self.control_gui = control_gui
         self.send_data_to_servos_controller = SendDataToServosControllerAutoControlGUI()
 
@@ -34,7 +36,32 @@ class AutoControlGUI(QtWidgets.QDialog):
         self.send_data_to_servos_controller.send_status.connect(self.enable_all_widgets)
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
 
+    def closeEvent(self, event):
+
+        if not self.robot_arm_ready:
+            message_box = QtWidgets.QMessageBox()
+            message_box.setIcon(QtWidgets.QMessageBox.Warning)
+            message_box.setWindowTitle("Uwaga!")
+            message_box.setText('Robot nie zakończył pracy. Operacja możliwa dopiero po jej ukończeniu.')
+            message_box.exec()
+
+            event.ignore()
+
+        elif self.robot_arm_ready:
+
+            message_box = QtWidgets.QMessageBox()
+            message_box.setIcon(QtWidgets.QMessageBox.Information)
+            message_box.setWindowTitle("Informacja")
+            message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku.')
+            message_box.exec()
+
+            send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
+            send_data_to_servos_controller_at_app_closing.send_data(self.control_gui.serial)
+
+            event.accept()
+
     def start_open_cv_worker(self):
+        self.ui.open_cv_label.clear()
         self.open_cv_worker.run_thread = True
         self.open_cv_worker.find_video_index_and_open_capture()
         self.open_cv_worker_thread = threading.Thread(target=self.open_cv_worker.receive_grab_frame)
@@ -60,8 +87,8 @@ class AutoControlGUI(QtWidgets.QDialog):
         self.open_cv_worker.run_thread = False
         self.open_cv_worker_thread.join()
         del self.open_cv_worker_thread
-        self.control_gui.show()
         self.close()
+        self.control_gui.show()
 
     def execute_command(self):
 
@@ -98,14 +125,21 @@ class AutoControlGUI(QtWidgets.QDialog):
                                                 data_tab[13], data_tab[14]))
                 thread.start()
 
+            else:
+                self.ui.commands_list_widget.addItem("Trzeba zaznaczyć zarówno figurę jak i jedną z dozwolonych operacji")
+
+        else:
+            self.ui.commands_list_widget.addItem("Nie ma figur do przeniesienia bądź dozwolonych operacji")
 
     def enable_all_widgets(self):
         self.ui.execute_command_push_button.setEnabled(True)
         self.ui.return_push_button.setEnabled(True)
+        self.robot_arm_ready = True
 
     def disable_all_widgets(self):
         self.ui.execute_command_push_button.setEnabled(False)
         self.ui.return_push_button.setEnabled(False)
+        self.robot_arm_ready = False
 
     def clear_figures_list_and_info(self):
         self.ui.found_figures_list_widget.clear()

@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets
 from manual_control.manual_control_gui import Ui_Dialog
 from send_data_to_servos.send_data_to_servos_controller_manual_control_gui \
     import SendDataToServosControllerManualControlGUI
+from send_data_to_servos.send_data_to_servos_controller_at_app_closing import SendDataToServosControllerAtAppClosing
 import threading
 
 
@@ -11,6 +12,7 @@ class ManualControlGUI(QtWidgets.QDialog):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.robot_arm_ready = True
         self.initialize()
         self.control_gui = control_gui
         self.send_data_to_servos_controller = SendDataToServosControllerManualControlGUI()
@@ -33,6 +35,30 @@ class ManualControlGUI(QtWidgets.QDialog):
 
         self.send_data_to_servos_controller.send_status.connect(self.enable_all_widgets)
         self.send_data_to_servos_controller.send_commands_text.connect(self.receive_commands_text)
+
+    def closeEvent(self, event):
+
+        if not self.robot_arm_ready:
+            message_box = QtWidgets.QMessageBox()
+            message_box.setIcon(QtWidgets.QMessageBox.Warning)
+            message_box.setWindowTitle("Uwaga")
+            message_box.setText('Robot nie zakończył pracy. Operacja możliwa dopiero po jej ukończeniu')
+            message_box.exec()
+
+            event.ignore()
+
+        elif self.robot_arm_ready:
+
+            message_box = QtWidgets.QMessageBox()
+            message_box.setIcon(QtWidgets.QMessageBox.Information)
+            message_box.setWindowTitle("Informacja")
+            message_box.setText('Po kliknięciu "Ok" nastąpi ustawienie robota w pozycji spoczynku')
+            message_box.exec()
+
+            send_data_to_servos_controller_at_app_closing = SendDataToServosControllerAtAppClosing()
+            send_data_to_servos_controller_at_app_closing.send_data(self.control_gui.serial)
+
+            event.accept()
 
     def initialize(self):
         self.ui.servo1_horizontal_slider.setMaximum(1000)
@@ -76,8 +102,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.ui.commands_list_widget.addItem(text)
 
     def return_to_control_gui(self):
-        self.control_gui.show()
         self.close()
+        self.control_gui.show()
 
     def servo1_slider_value_changed(self):
         self.ui.servo1_location_label.setText(
@@ -95,8 +121,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -127,8 +153,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -159,8 +185,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -191,8 +217,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -223,8 +249,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -255,8 +281,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         data_tab.append(self.ui.servo2_horizontal_slider.value())
         data_tab.append(self.ui.servo3_horizontal_slider.value())
         data_tab.append(self.ui.servo4_horizontal_slider.value())
-        data_tab.append(self.ui.servo5_horizontal_slider.value())
-        data_tab.append(self.ui.servo6_horizontal_slider.value())
+        data_tab.append(self.check_servo_value(self.ui.servo5_horizontal_slider.value()))
+        data_tab.append(self.check_servo_value(self.ui.servo6_horizontal_slider.value()))
         data_tab.append(1)
         data_tab.append(3)
         data_tab.append(4)
@@ -317,6 +343,8 @@ class ManualControlGUI(QtWidgets.QDialog):
         self.ui.neutral_position_push_button.setEnabled(True)
         self.ui.return_push_button.setEnabled(True)
 
+        self.robot_arm_ready = True
+
     def disable_all_widgets(self):
         self.ui.servo1_horizontal_slider.setEnabled(False)
         self.ui.servo2_horizontal_slider.setEnabled(False)
@@ -327,3 +355,13 @@ class ManualControlGUI(QtWidgets.QDialog):
 
         self.ui.neutral_position_push_button.setEnabled(False)
         self.ui.return_push_button.setEnabled(False)
+
+        self.robot_arm_ready = False
+
+    def check_servo_value(self, value):
+        if value < 70:
+            return 70
+        elif value > 930:
+            return 930
+        else:
+            return value

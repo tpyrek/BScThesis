@@ -14,7 +14,7 @@ class SendDataToServosControllerManualControlGUI(QtCore.QObject):
                   sixth_servo):
 
         if not serial.is_open:
-            self.send_commands_text.emit("Serial port jest zamknięty")
+            self.send_commands_text.emit("Port szeregowy jest zamknięty")
             self.send_status.emit()
             return
 

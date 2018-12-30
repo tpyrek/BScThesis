@@ -3,3 +3,4 @@ OpenCV/__pycache__/
 *.pyc
 OpenCV/.ipynb_checkpoints/
 *.ipynb
+.idea/
