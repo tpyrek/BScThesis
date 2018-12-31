@@ -66,7 +66,7 @@ class OpenCVWorker(QtCore.QObject):
                                               dtype=numpy.uint8, sep=',')  # Górny zakres koloru niebieskiego
         # Jeśli nie ma takiej sekcji to defaultowy zakres
         else:
-            red_lower_bottom = numpy.array([0, 150, 150], numpy.uint8)  # Dolny zakres koloru czerwonego
+            red_lower_bottom = numpy.array([0, 150, 120], numpy.uint8)  # Dolny zakres koloru czerwonego
             red_upper_bottom = numpy.array([10, 255, 255], numpy.uint8)  # Górny zakres koloru czerwonego
 
         # Sprawdzam czy jest sekcja 'RedTop' w pliku konfiguracyjnym
@@ -78,7 +78,7 @@ class OpenCVWorker(QtCore.QObject):
                                               dtype=numpy.uint8, sep=',')  # Górny zakres koloru niebieskiego
         # Jeśli nie ma takiej sekcji to defaultowy zakres
         else:
-            red_lower_top = numpy.array([160, 150, 150], numpy.uint8)  # Dolny zakres koloru czerwonego
+            red_lower_top = numpy.array([160, 150, 120], numpy.uint8)  # Dolny zakres koloru czerwonego
             red_upper_top = numpy.array([180, 255, 255], numpy.uint8)  # Górny zakres koloru czerwonego
 
         return red_lower_bottom, red_upper_bottom, red_lower_top, red_upper_top
