@@ -230,16 +230,19 @@ def figures_process(figures_store, frame):
     # Dodanie figur do magazynu
     # Numer figury ustawiam zgodnie z ilością figur, aby każda miała unikalny
     for i in range(0, len(contours_blue)):
-        f = Figure(figures_store.quantity, 0, 0, "Blue", contours_blue[i], 0, None)
-        figures_store.add_figure(f)
+        if len(contours_blue[i]) > 130:
+            f = Figure(figures_store.quantity, 0, 0, "Blue", contours_blue[i], 0, None)
+            figures_store.add_figure(f)
 
     for i in range(0, len(contours_green)):
-        f = Figure(figures_store.quantity, 0, 0, "Green", contours_green[i], 0, None)
-        figures_store.add_figure(f)
+        if len(contours_green[i]) > 130:
+            f = Figure(figures_store.quantity, 0, 0, "Green", contours_green[i], 0, None)
+            figures_store.add_figure(f)
 
     for i in range(0, len(contours_yellow)):
-        f = Figure(figures_store.quantity, 0, 0, "Yellow", contours_yellow[i], 0, None)
-        figures_store.add_figure(f)
+        if len(contours_yellow[i]) > 130:
+            f = Figure(figures_store.quantity, 0, 0, "Yellow", contours_yellow[i], 0, None)
+            figures_store.add_figure(f)
 
     for i in range(0, figures_store.quantity):
         calculate_and_set_figure_values(figures_store.figures[i])
