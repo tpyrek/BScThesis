@@ -3,9 +3,13 @@
 ### Starting app
 Clone the repository
 ```
-git clone
-``` 
-
+git clone https://github.com/tpyrek/BScThesis.git
+```
+And run app
+```
+cd BScThesis/OpenCV
+python3 main.py
+```
 ### Prerequisites
 What you need to run app:
 * Pyserial
