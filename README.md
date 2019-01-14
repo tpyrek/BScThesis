@@ -104,7 +104,26 @@ sudo locate mkspecs/devices/linux-rasp-pi3-g++/qmake.conf
 ```
 * Use text editor for example gedit to edit this file and change
 ```
-what to change
+VC_LIBRARY_PATH         = /opt/vc/lib
+VC_INCLUDE_PATH         = =/opt/vc/include
+
+VC_LINK_LINE            = -L=$${VC_LIBRARY_PATH}
+
+QMAKE_LIBDIR_OPENGL_ES2 = =$${VC_LIBRARY_PATH}
+QMAKE_LIBDIR_EGL        = $$QMAKE_LIBDIR_OPENGL_ES2
+QMAKE_LIBDIR_OPENVG     = $$QMAKE_LIBDIR_OPENGL_ES2
+
+QMAKE_INCDIR_EGL        = \
+                        $${VC_INCLUDE_PATH} \
+                        $${VC_INCLUDE_PATH}/interface/vcos/pthreads \
+                        $${VC_INCLUDE_PATH}/interface/vmcs_host/linux
+
+QMAKE_INCDIR_OPENGL_ES2 = $${QMAKE_INCDIR_EGL}
+
+QMAKE_LIBS_OPENGL_ES2   = $${VC_LINK_LINE} -lGLESv2
+
+# The official opt vc EGL references GLESv2 symbols: need to link it
+QMAKE_LIBS_EGL          = $${VC_LINK_LINE} -lEGL -lGLESv2
 ```
 to
 ```
