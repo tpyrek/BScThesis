@@ -71,6 +71,12 @@ PKG_CONFIG_SYSROOT_DIR=/ \
 Where:
 * **qt-everywhere-src-5.12.0** change to a proper folder name where you un-tared downloaded Qt archive
 
+If configuration succeeded, you will see something like this:
+```
+Qt is now configured for building. Just run 'make'.
+Once everything is built, you must run 'make install'.
+Qt will be installed into '/opt/Qt5.12'.
+```
 Compile
 ```
 make
