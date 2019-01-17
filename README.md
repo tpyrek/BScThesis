@@ -64,7 +64,7 @@ PKG_CONFIG_SYSROOT_DIR=/ \
 -device linux-rasp-pi3-g++ -device-option CROSS_COMPILE=/usr/bin/ \
 -opensource -confirm-license -release -reduce-exports \
 -force-pkg-config -no-kms -nomake examples -no-compile-examples -no-pch \
--skip qtwayland -skip qtwebengine -no-feature-geoservices_mapboxgl \
+-skip qtwayland -skip qtwebengine -skip qtscript -no-feature-geoservices_mapboxgl \
 -qt-pcre -ssl -evdev -system-freetype -fontconfig -glib -prefix /opt/Qt5.12
 ```
 
